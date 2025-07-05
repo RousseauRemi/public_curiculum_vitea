@@ -1,0 +1,19 @@
+# Netlify SPA redirect for client-side routing
+/*    /index.html   200
+
+# Redirect common paths to main page with proper sections
+/about           /#home           302
+/skills          /#skills         302
+/experience      /#experience     302
+/education       /#education      302
+/projects        /#projects       302
+/recommendations /#recommendations 302
+/contact         /#home           302
+
+# Language-specific redirects
+/fr              /?lang=fr        302
+/en              /?lang=en        302
+
+# Legacy URL redirects if needed
+/cv.pdf          /                302
+/resume          /                302

@@ -1,0 +1,29 @@
+/* Additional custom styles for the CV application */
+
+/* Smooth scrolling for navigation */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure proper layout on different screen sizes */
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Dark mode support */
+.dark {
+  /* Dark mode styles will be added later if needed */
+}
+
+/* Print styles for PDF generation */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}
