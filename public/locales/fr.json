@@ -1,0 +1,100 @@
+{
+  "navigation": {
+    "home": "Accueil",
+    "skills": "Compétences",
+    "experience": "Expérience",
+    "education": "Formation",
+    "projects": "Projets",
+    "recommendations": "Recommandations",
+    "downloadCV": "Télécharger CV",
+    "languageToggle": "Langue",
+    "scrollProgress": "Progression du défilement",
+    "clickToNavigate": "Cliquer pour naviguer vers la section"
+  },
+  "sections": {
+    "aboutMe": "À propos de moi",
+    "technicalSkills": "Compétences techniques",
+    "professionalExperience": "Expérience professionnelle",
+    "education": "Formation",
+    "personalProjects": "Projets internes",
+    "recommendations": "Recommandations"
+  },
+  "availability": {
+    "available-free": "Disponible et libre immédiatement",
+    "in-mission-open": "En mission mais ouvert aux opportunités"
+  },
+  "skills": {
+    "junior": "Junior",
+    "intermediate": "Intermédiaire",
+    "advanced": "Avancé"
+  },
+  "projects": {
+    "title": "Projets internes",
+    "subtitle": "Découvrez mes différents projets personnels et professionnels",
+    "description": "Description",
+    "technologies": "Technologies",
+    "images": "Images",
+    "subProjects": "Modules du projet",
+    "noProjects": "Aucun projet trouvé pour les critères sélectionnés",
+    "projectFound": "projet trouvé",
+    "projectsFound": "projets trouvés",
+    "filterAll": "Tous",
+    "filterByStatus": "Filtrer par statut",
+    "filterByCategory": "Filtrer par catégorie",
+    "categories": {
+      "all": "Toutes les catégories",
+      "informatics": "Informatique",
+      "gardening": "Jardinage",
+      "wood": "Menuiserie",
+      "electronics": "Électronique"
+    },
+    "states": {
+      "enReflexion": "En réflexion",
+      "demarre": "Démarré",
+      "enCours": "En cours",
+      "termine": "Terminé",
+      "archive": "Archivé"
+    },
+    "tools": "Outils",
+    "duration": "Durée",
+    "status": "Statut"
+  },
+  "experience": {
+    "current": "Actuel",
+    "technologies": "Technologies",
+    "tools": "Outils",
+    "mission": "Mission",
+    "objectives": "Objectifs",
+    "context": "Contexte",
+    "team": "Équipe",
+    "endCondition": "Condition de fin"
+  },
+  "education": {
+    "diplomas": "Diplômes",
+    "period": "Période",
+    "location": "Localisation"
+  },
+  "common": {
+    "readMore": "Lire plus",
+    "readLess": "Lire moins",
+    "openInNewTab": "Ouvrir dans un nouvel onglet",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "close": "Fermer"
+  },
+  "contact": {
+    "email": "Email",
+    "phone": "Téléphone",
+    "location": "Localisation",
+    "linkedin": "LinkedIn",
+    "github": "GitHub"
+  },
+  "home": {
+    "title": "Développeur Full Stack",
+    "subtitle": "Passionné par le développement web moderne",
+    "description": "Expert en développement d'applications web avec une solide expérience en technologies front-end et back-end.",
+    "availability": "Disponibilité",
+    "downloadCV": "Télécharger mon CV",
+    "contactMe": "Me contacter"
+  }
+}

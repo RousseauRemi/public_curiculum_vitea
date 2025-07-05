@@ -1,0 +1,1064 @@
+{
+  "personalInfo": {
+    "nom": "Rousseau",
+    "prenom": "Rémi",
+    "age": 32,
+    "localisation": "Montfaucon-Montigné, France",
+    "email": "hiring@remirousseau.pro",
+    "linkedin": "https://www.linkedin.com/in/remirousseauprofil/",
+    "profileImage": "/images/profile.jpg",
+    "description": "Développeur .Net Fullstack spécialisé en Angular, React, Python et Flutter, je suis passionné par l'innovation technologique et l'amélioration continue de mes compétences. Curieux et créatif, je m'efforce d'explorer de nouvelles technologies à la pointe du progrès pour concevoir et développer des solutions novatrices. Toujours ouvert aux nouvelles idées et domaines qui me captivent, je cherche à allier expertise technique et esprit d'innovation pour relever de nouveaux défis.",
+    "passions": ["Sport", "Méditation", "Lecture", "Musique", "Veille technologique"],
+    "availabilityStatus": "in-mission-open"
+  },
+  "experiences": [
+    {
+      "id": 8,
+      "nomDeMission": "Développeur Fullstack",
+      "localisation": "Télétravail",
+      "dateDebut": "Août 2024",
+      "dateFin": "Octobre 2026",
+      "missionEnCours": true,
+      "technologies": ["React", "TypeScript", ".Net 8", "Entity Framework Core", "SqlServer", "Postgres", "MCP", "RabbitMQ"],
+      "outils": ["CQRS", "Clean architecture", "Git", "Jira", "Méthode Agile", "Clean code"],
+      "mission": "Développement d'applications de traduction et de gestion linguistique",
+      "objectives": [
+        "Développer des fonctionnalités de traduction avancées",
+        "Maintenir une architecture propre et scalable",
+        "Collaborer avec une équipe internationale"
+      ],
+      "context": "Acolad via Elephant technologies",
+      "detailsMission": [
+        "Développement full-stack avec React et .NET 8",
+        "Maintenance et évolution des interactions entre les chefs de projet et les outils de traduction (CAT tools)",
+        "Implémentation de patterns CQRS et Clean Architecture",
+        "Collaboration avec des équipes distribuées mondialement",
+        "Exemples de réalisations : gestion des mises à jour pour XTM, création d'un MCP pour un analyseur de fichiers, amélioration de l'interface utilisateur sur l'ensemble du cycle de vie des projets"
+      ],
+      "conditionDeFinDeMission": "Mission en cours",
+      "equipe": "Équipe internationale avec des développeurs du monde entier",
+      "logo1": "/images/experiences/DELOITTE.png"
+    },
+    {
+      "id": 7,
+      "nomDeMission": "Développeur Fullstack",
+      "localisation": "Télétravail",
+      "dateDebut": "15 Avril 2023",
+      "dateFin": "30 Octobre 2023",
+      "missionEnCours": false,
+      "technologies": ["Angular", "TypeScript", ".Net 6", "Entity Framework Core", "SqlServer"],
+      "outils": ["CQRS", "Domain Driven Design", "Clean architecture", "Git", "Azure Devops", "Méthode Agile", "Clean code"],
+      "mission": "Développement d'une plateforme de gestion fiscale internationale",
+      "objectives": [
+        "Moderniser l'architecture existante",
+        "Implémenter des patterns DDD et CQRS",
+        "Optimiser les performances"
+      ],
+      "context": "Deloitte via Access-it",
+      "detailsMission": [
+        "Développement avec Angular et .NET 6",
+        "Architecture basée sur les principes DDD et CQRS",
+        "Collaboration avec des équipes France et Luxembourg"
+      ],
+      "conditionDeFinDeMission": "Deloitte France a mis le projet en standby suite à la création d'un nouvel outil par les équipes US",
+      "equipe": "Côté France : 1 PM + 2 devs (puis 1 seul dev), côté Luxembourg : 1 PM + 3 devs",
+      "logo1": "/images/experiences/DELOITTE.png"
+    },
+    {
+      "id": 6,
+      "nomDeMission": "Développeur Fullstack Angular / .Net",
+      "localisation": "Nantes",
+      "dateDebut": "15 Mars 2022",
+      "dateFin": "31 Décembre 2022",
+      "missionEnCours": false,
+      "technologies": ["Angular 14", "TypeScript", ".Net 6", "Entity Framework Core", "SqlServer"],
+      "outils": ["TDD", "Git", "Azure Devops", "Méthode Agile", "Clean code", "Clean architecture"],
+      "mission": "Refonte complète du système de gestion des congés pour les ouvriers du BTP",
+      "objectives": [
+        "Moderniser l'interface utilisateur",
+        "Améliorer l'expérience utilisateur",
+        "Optimiser les performances"
+      ],
+      "context": "CIBTP via ACII",
+      "detailsMission": [
+        "Développement avec Angular 14 et .NET 6",
+        "Application des pratiques TDD",
+        "Refonte UX/UI complète"
+      ],
+      "conditionDeFinDeMission": "Fin de mission prévue",
+      "equipe": "1 PO, 3 développeurs dont 1 junior et 1 lead dev",
+      "logo1": "/images/experiences/CIBTP.png",
+      "logo2": "/images/experiences/ACII.png"
+    },
+    {
+      "id": 5,
+      "nomDeMission": "Développeur Fullstack",
+      "localisation": "Nantes",
+      "dateDebut": "1er Décembre 2020",
+      "dateFin": "17 Décembre 2021",
+      "missionEnCours": false,
+      "technologies": ["Angular", "RxJs", "TypeScript", ".Net Core 3.1", "Entity Framework Core", "RabbitMQ", "SqlServer", "HangFire", "Loki", "Graphana"],
+      "outils": ["TDD", "Git", "Azure Devops", "Redmine", "Méthode Agile"],
+      "mission": "Refonte du site web de gestion des mandats, programmes, logements et cycle de vie des locataires",
+      "objectives": [
+        "Moderniser la plateforme existante",
+        "Améliorer les performances",
+        "Implémenter de nouvelles fonctionnalités"
+      ],
+      "context": "Foncière logement via Key-Consulting",
+      "detailsMission": [
+        "Développement Angular avec RxJs",
+        "Backend .NET Core avec Entity Framework",
+        "Intégration de RabbitMQ pour la messagerie"
+      ],
+      "conditionDeFinDeMission": "Fin de mission prévue",
+      "equipe": "1 Front lead tech, 1 Back lead tech, 1 développeur fullstack (moi), 1 PO",
+      "logo1": "/images/experiences/fonciereLogement.png",
+      "logo2": "/images/experiences/keyConsulting.png"
+    },
+    {
+      "id": 4,
+      "nomDeMission": "Développeur C# / WPF",
+      "localisation": "Nantes",
+      "dateDebut": "1er Juin 2019",
+      "dateFin": "1er Août 2020",
+      "missionEnCours": false,
+      "technologies": ["WPF", "Winform", "WebSocket", "Entity Framework Core"],
+      "outils": ["Git", "Jira", "TeamCity", "SonarQube", "Méthode Agile", "MVVM"],
+      "mission": "Intégration dans l'équipe logiciel Downhole pour développer des clients lourds utilisés sur le terrain",
+      "objectives": [
+        "Développer des applications WPF robustes",
+        "Maintenir le code existant",
+        "Implémenter de nouvelles fonctionnalités"
+      ],
+      "context": "Sercel via Elephant-technologies",
+      "detailsMission": [
+        "Développement d'applications WPF/WinForms",
+        "Intégration WebSocket pour la communication temps réel",
+        "Travail sur des logiciels utilisés dans l'industrie pétrolière"
+      ],
+      "conditionDeFinDeMission": "Pendant la crise Covid, les prix du baril de pétrole ont chuté, Sercel a décidé de se séparer de certains prestataires",
+      "equipe": "1 PM, 1 développeur senior, 1 développeur confirmé (moi)",
+      "logo1": "/images/experiences/sercel.png",
+      "logo2": "/images/experiences/elephant.png"
+    },
+    {
+      "id": 3,
+      "nomDeMission": "Développeur C# / WPF",
+      "localisation": "Nantes",
+      "dateDebut": "16 Janvier 2017",
+      "dateFin": "1er Avril 2019",
+      "missionEnCours": false,
+      "technologies": ["WPF", "WCF", "ASP.NET", "PLSQL", "Oracle", "Entity Framework"],
+      "outils": ["Visual Studio", "Kibana", "Sonar Qube", "Team-City"],
+      "mission": "Développement et maintenance d'applications de gestion d'assurance",
+      "objectives": [
+        "Maintenir les applications existantes",
+        "Développer de nouvelles fonctionnalités",
+        "Optimiser les performances"
+      ],
+      "context": "Verlingue via Proxiad (Freelance à partir du 1er Août 2018)",
+      "detailsMission": [
+        "Développement WPF avec WCF",
+        "Gestion de base de données Oracle",
+        "Développement ASP.NET"
+      ],
+      "conditionDeFinDeMission": "Évolution vers le freelance",
+      "equipe": "1 PM et 2-4 développeurs selon la difficulté",
+      "logo1": "/images/experiences/verlingue.png",
+      "logo2": "/images/experiences/proxiad.png"
+    },
+    {
+      "id": 2,
+      "nomDeMission": "Développeur C# - Alternance",
+      "localisation": "Nantes",
+      "dateDebut": "12 Décembre 2014",
+      "dateFin": "12 Décembre 2016",
+      "missionEnCours": false,
+      "technologies": ["C#", "XAML", "WPF", "MVVM", "SubVersion", "Oracle"],
+      "outils": ["Visual Studio", "norme ISO27001"],
+      "mission": "Refactoring d'applications, migration de programmes VB6 vers C#",
+      "objectives": [
+        "Migrer le code legacy VB6",
+        "Moderniser l'architecture",
+        "Apprendre les bonnes pratiques"
+      ],
+      "context": "Henner GMC - Alternance",
+      "detailsMission": [
+        "Migration VB6 vers C# WPF",
+        "Application du pattern MVVM",
+        "Respect des normes ISO27001"
+      ],
+      "conditionDeFinDeMission": "Fin d'alternance",
+      "equipe": "1 PM, 1 développeur confirmé, 1 junior (moi)",
+      "logo1": "/images/experiences/henner.png"
+    },
+    {
+      "id": 1,
+      "nomDeMission": "Développeur - Alternance",
+      "localisation": "Orvault",
+      "dateDebut": "12 Décembre 2013",
+      "dateFin": "12 Décembre 2014",
+      "missionEnCours": false,
+      "technologies": ["Shell Bash", "C++", "GWT"],
+      "outils": ["ClearCase", "CodeColaborator", "DCT"],
+      "mission": "Amélioration de la robustesse, du temps d'exécution, de la compilation, de la maintenabilité et optimisation du code d'automatisation des eNodeB LTE(4G)",
+      "objectives": [
+        "Optimiser les performances",
+        "Améliorer la maintenabilité",
+        "Réduire les temps de compilation"
+      ],
+      "context": "Alcatel-Lucent - Alternance",
+      "detailsMission": [
+        "Développement en C++ et Shell Bash",
+        "Optimisation de code pour l'industrie télécoms",
+        "Travail sur les infrastructures 4G/LTE"
+      ],
+      "conditionDeFinDeMission": "Plan de restructuration, fermeture des bureaux Alcatel d'Orvault",
+      "equipe": "2 développeurs confirmés et 1 junior",
+      "logo1": "/images/experiences/alcatel.png"
+    }
+  ],
+  "competenceCategories": [
+    {
+      "title1": "Compétences",
+      "title2": "Techniques",
+      "competences": [
+        {
+          "label": "C# & .Net",
+          "backgroundColor": "#512BD4",
+          "data": 3,
+          "level": "advanced",
+          "description": "Plus de 10 ans d'expériences et travaillant régulièrement sur les dernières versions"
+        },
+        {
+          "label": "Angular / React",
+          "backgroundColor": "#DD0031",
+          "data": 3,
+          "level": "advanced",
+          "description": "4 ans d'expérience"
+        },
+        {
+          "label": "WPF",
+          "backgroundColor": "#0078D4",
+          "data": 2,
+          "level": "intermediate",
+          "description": "5 ans d'expérience de 2014 à 2019"
+        },
+        {
+          "label": "Flutter - Dart",
+          "backgroundColor": "#02569B",
+          "data": 2,
+          "level": "intermediate",
+          "description": "2 ans d'expérience sur des projets internes"
+        },
+        {
+          "label": "Python",
+          "backgroundColor": "#3776AB",
+          "data": 2,
+          "level": "intermediate",
+          "description": "2 ans d'expérience, incluant des formations sur l'IA, création d'API, création d'UI, création de MCP et utilisation du protocole OpenAI"
+        },
+        {
+          "label": "Postgres",
+          "backgroundColor": "#336791",
+          "data": 2,
+          "level": "intermediate",
+          "description": "5 à 6 ans d'expérience professionelles et de projets internes"
+        },
+        {
+          "label": "Sql Server",
+          "backgroundColor": "#CC2927",
+          "data": 3,
+          "level": "advanced",
+          "description": "10 ans d'expériences, dans pratiquement chaque expérience professionelle"
+        },
+        {
+          "label": "TypeScript",
+          "backgroundColor": "#3178C6",
+          "data": 2,
+          "level": "intermediate",
+          "description": "4 ans d'expériences"
+        }
+      ]
+    },
+    {
+      "title1": "Outils &",
+      "title2": "Autres",
+      "competences": [
+        {
+          "label": "Intellij / Visual Studio",
+          "backgroundColor": "#000000",
+          "data": 3,
+          "level": "advanced",
+          "description": "Maîtrise complète des environnements de développement"
+        },
+        {
+          "label": "Git",
+          "backgroundColor": "#F05032",
+          "data": 3,
+          "level": "advanced",
+          "description": "Contrôle de version avancé"
+        },
+        {
+          "label": "Jira / Jenkins / GitLab / Azure Devops",
+          "backgroundColor": "#0052CC",
+          "data": 3,
+          "level": "advanced",
+          "description": "Outils de gestion de projet et CI/CD"
+        },
+        {
+          "label": "SonarQube",
+          "backgroundColor": "#4E9BCD",
+          "data": 3,
+          "level": "advanced",
+          "description": "Analyse de qualité du code"
+        },
+        {
+          "label": "GitHub",
+          "backgroundColor": "#181717",
+          "data": 3,
+          "level": "intermediate",
+          "description": "Collaboration et versioning"
+        },
+        {
+          "label": "Docker",
+          "backgroundColor": "#2496ED",
+          "data": 2,
+          "level": "intermediate",
+          "description": "Conteneurisation"
+        },
+        {
+          "label": "Arduino",
+          "backgroundColor": "#00979D",
+          "data": 2,
+          "level": "intermediate",
+          "description": "Développement embarqué"
+        },
+        {
+          "label": "Claude Code",
+          "backgroundColor": "#B87333",
+          "data": 2,
+          "level": "intermediate",
+          "description": "Assistant IA pour le développement"
+        },
+        {
+          "label": "Cursor",
+          "backgroundColor": "#5A67D8",
+          "data": 2,
+          "level": "intermediate",
+          "description": "IDE avec assistance IA"
+        }
+      ]
+    }
+  ],
+  "formations": [
+    {
+      "id": 4,
+      "nomFormation": "Master 2",
+      "nomEcole": "EPSI",
+      "localisation": "Nantes",
+      "dateDebut": "2015",
+      "dateFin": "2016",
+      "image": "/images/formations/epsi.png",
+      "diplomes": ["Validation de toutes les compétences, sauf du TOEIC (695 au lieu de 750)"]
+    },
+    {
+      "id": 3,
+      "nomFormation": "Master 1",
+      "nomEcole": "EPSI",
+      "localisation": "Nantes",
+      "dateDebut": "2014",
+      "dateFin": "2015",
+      "image": "/images/formations/epsi.png",
+      "diplomes": ["ASRBD"]
+    },
+    {
+      "id": 2,
+      "nomFormation": "Licence",
+      "nomEcole": "EPSI",
+      "localisation": "Nantes",
+      "dateDebut": "2013",
+      "dateFin": "2014",
+      "image": "/images/formations/epsi.png",
+      "diplomes": ["Administrateur système, réseaux et base de données (ASRBD)", "Développement (spécialité cloud)"]
+    },
+    {
+      "id": 1,
+      "nomFormation": "BTS IRIS",
+      "nomEcole": "St Jean Baptiste de la Salle",
+      "localisation": "Nantes",
+      "dateDebut": "2010",
+      "dateFin": "2013",
+      "image": "/images/formations/la_salle.png",
+      "diplomes": ["Informatique et réseaux pour l'industrie et les services techniques"]
+    }
+  ],
+  "projetsInternes": [
+    {
+      "id": 12,
+      "name": "Génération d'images avec IA",
+      "startDate": "Novembre 2023",
+      "endDate": null,
+      "status": "enCours",
+      "description": "Génération d'images via Stable Diffusion ou ComfyUI, avec une bibliothèque pour noter et consulter les images générées, et une API permettant le stockage des différents paramètres liés à la génération et au stockage des informations utilisées pour chaque génération d'images.",
+      "categories": ["informatics"],
+      "expandable": true,
+      "subProjects": [
+        {
+          "id": 1,
+          "name": "Génération d'images automatique",
+          "startDate": "Novembre 2023",
+          "endDate": null,
+          "description": "Génération d'images en Python utilisant Stable Diffusion et ComfyUI. Permet de générer des prompts aléatoires basés sur des checkpoints, LoRAs et autres options (background, position si humain, styles etc) et les sauvegarder (infos via l'API de settings).",
+          "technologies": ["Python", "Stable Diffusion", "ComfyUI", "Ollama"],
+          "tools": [],
+          "updates": [
+            {
+              "date": "Février 2025",
+              "description": "Utilisation d'Ollama pour améliorer et avoir plus d'aléatoire dans les prompts"
+            },
+            {
+              "date": "Juin 2024",
+              "description": "Migration vers ComfyUI pour une interface plus flexible"
+            },
+            {
+              "date": "Novembre 2023",
+              "description": "Compatibilité avec Stable Diffusion - développement initial"
+            }
+          ],
+          "images": []
+        },
+        {
+          "id": 2,
+          "name": "Gestionnaire d'Images Flutter",
+          "startDate": "Juin 2024",
+          "endDate": null,
+          "description": "Bibliothèque faite en Flutter, se connectant à PostgreSQL pour mettre à jour et récupérer les infos des images en plus des métadonnées (qui peuvent être mises à jour).",
+          "technologies": ["Flutter", "Dart", "PostgreSQL"],
+          "tools": [],
+          "updates": [],
+          "images": [
+            {
+              "url": "/images/projects/manage_stable_diffusion.png",
+              "type": "web"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "API de Settings et Sauvegarde",
+          "startDate": "Septembre 2024",
+          "endDate": null,
+          "description": "API de settings et de sauvegarde en Python, permet de stocker et manager les checkpoints, LoRAs, et autres settings ainsi que les infos des images générées (pour pouvoir les régénérer à l'identique si nécessaire).",
+          "technologies": ["Python", "PostgreSQL"],
+          "tools": [],
+          "updates": [
+            {
+              "date": "2025",
+              "description": "Ajout de statistiques pour le suivi des générations d'images"
+            }
+          ],
+          "images": []
+        },
+        {
+          "id": 4,
+          "name": "Gestionnaire de Paramètres",
+          "startDate": "Septembre 2024",
+          "endDate": null,
+          "description": "Manager de settings pour facilement ajouter et modifier les paramètres, permettant la gestion centralisée des checkpoints, LoRAs et autres configurations.",
+          "technologies": ["Flutter"],
+          "tools": [],
+          "updates": [
+            {
+              "date": "2025",
+              "description": "Synchronisation avec un site externe pour vérifier les nouvelles versions de checkpoints"
+            }
+          ],
+          "images": []
+        }
+      ],
+      "images": [
+        {
+          "url": "/images/projects/manage_stable_diffusion.png",
+          "type": "web"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Calendarr",
+      "startDate": "20 Avril 2024",
+      "endDate": "5 Juillet 2024",
+      "status": "termine",
+      "description": "Application de calendrier qui récupère les informations de Sonarr, Radarr, Lidarr et Readarr (connectés à IMDb ou autres fournisseurs) pour afficher les séries, films, livres et musiques suivis. Comprend deux sous-projets : un frontend pour l'affichage du calendrier avec détails et une API pour communiquer avec les applications Arr et stocker les configurations (adresses des applications Arr, etc.) en base de données.",
+      "categories": ["informatics"],
+      "expandable": true,
+      "subProjects": [
+        {
+          "id": 1,
+          "name": "Frontend Calendrier",
+          "startDate": "20 Avril 2024",
+          "endDate": "5 Juillet 2024",
+          "description": "Application Flutter qui affiche un calendrier avec les détails des séries, films, livres et musiques suivis. Se connecte à l'API pour récupérer et afficher les informations des différentes applications Arr.",
+          "technologies": ["Flutter", "Dart", "Firebase"],
+          "tools": [],
+          "updates": [],
+          "images": [
+            {
+              "url": "/images/projects/web_calendar.png",
+              "type": "web"
+            },
+            {
+              "url": "/images/projects/mobile_calendar.jpg",
+              "type": "mobile"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "API d'intégration Arr",
+          "startDate": "20 Avril 2024",
+          "endDate": "5 Juillet 2024",
+          "description": "API qui communique avec les applications Sonarr, Radarr, Lidarr et Readarr pour récupérer les informations sur les médias suivis. Stocke les paramètres de configuration (adresses des applications Arr, clés API, etc.) dans une base de données PostgreSQL.",
+          "technologies": [".NET 8", "PostgreSQL", "REST API"],
+          "tools": [],
+          "updates": [],
+          "images": []
+        }
+      ],
+      "images": [
+        {
+          "url": "/images/projects/web_calendar.png",
+          "type": "web"
+        },
+        {
+          "url": "/images/projects/mobile_calendar.jpg",
+          "type": "mobile"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Système de Gestion de Plantes",
+      "startDate": "1er Janvier 2023",
+      "endDate": null,
+      "status": "enCours",
+      "description": "Système complet de gestion et suivi de plantes connecté avec architecture microservices. Comprend une interface mobile, gestion des alertes, intégration météo et stockage de documents pour le suivi des soins des plantes.",
+      "categories": ["informatics"],
+      "expandable": true,
+      "subProjects": [
+        {
+          "id": 1,
+          "name": "Applications Frontend",
+          "startDate": "22 Septembre 2024",
+          "endDate": null,
+          "description": "Application Flutter multi-plateforme pour le suivi et la gestion des plantes. Disponible sur mobile, web et Windows. Affiche l'état des plantes, les plannings d'arrosage, reçoit des notifications push et permet aux utilisateurs de suivre la santé des plantes avec photos et notes.",
+          "technologies": ["Flutter", "Dart", "Firebase"],
+          "tools": [],
+          "updates": [
+            {
+              "date": "8 Novembre 2024",
+              "description": "Implémentation de la gestion des notifications push et deep linking pour les rappels d'arrosage"
+            }
+          ],
+          "images": [
+            {
+              "url": "/images/projects/COMP.png",
+              "type": "web"
+            },
+            {
+              "url": "/images/projects/comp_min2.jpg",
+              "type": "mobile"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "API Backend",
+          "startDate": "10 Juillet 2024",
+          "endDate": null,
+          "description": "API principale .NET 8 gérant les données des plantes, profils utilisateurs, plannings d'arrosage et orchestrant la communication entre microservices. Utilise PostgreSQL pour la persistance des données.",
+          "technologies": [".NET 8", "PostgreSQL", "Entity Framework Core"],
+          "tools": [],
+          "updates": [],
+          "images": []
+        },
+        {
+          "id": 3,
+          "name": "Service d'Alertes",
+          "startDate": "Novembre 2024",
+          "endDate": null,
+          "description": "Service dédié à la gestion des alertes et notifications. Utilise RabbitMQ pour recevoir les événements du service API, traite les règles d'alerte et envoie des notifications push via Firebase.",
+          "technologies": [".NET 8", "RabbitMQ", "PostgreSQL", "Firebase Cloud Messaging"],
+          "tools": [],
+          "updates": [
+            {
+              "date": "8 Novembre 2024",
+              "description": "Intégration de notifications push pour les rappels d'arrosage via Firebase Cloud Messaging"
+            }
+          ],
+          "images": []
+        },
+        {
+          "id": 4,
+          "name": "Service Météo",
+          "startDate": "Janvier 2023",
+          "endDate": null,
+          "description": "Service d'agrégation de données météorologiques qui récupère les informations de plusieurs fournisseurs (OpenWeatherMap, WeatherAPI, etc.) pour optimiser les plannings d'arrosage selon les conditions locales.",
+          "technologies": [".NET 8", "REST APIs", "PostgreSQL"],
+          "tools": [],
+          "updates": [],
+          "images": []
+        }
+      ],
+      "images": [
+        {
+          "url": "/images/projects/COMP.png",
+          "type": "web"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Domotique",
+      "startDate": "1er Janvier 2021",
+      "endDate": null,
+      "status": "enReflexion",
+      "description": "Système domotique personnalisé avec Arduino",
+      "categories": ["electronics", "informatics"],
+      "expandable": true,
+      "technologies": ["Arduino", "électronique"],
+      "outils": [],
+      "updates": [],
+      "images": []
+    },
+    {
+      "id": 6,
+      "name": "Curriculum Vitae",
+      "startDate": "2023",
+      "endDate": "2023",
+      "status": "termine",
+      "description": "CV interactif en React avec génération PDF et design responsive moderne",
+      "categories": ["informatics"],
+      "expandable": true,
+      "subProjects": [
+        {
+          "id": 1,
+          "name": "Interface React",
+          "startDate": "2023",
+          "endDate": "2023",
+          "description": "Développement de l'interface utilisateur en React avec Tailwind CSS pour un design moderne et responsive",
+          "technologies": ["React", "TypeScript", "Tailwind CSS"],
+          "tools": [],
+          "updates": [],
+          "images": []
+        },
+        {
+          "id": 2,
+          "name": "Génération PDF",
+          "startDate": "2023",
+          "endDate": "2023", 
+          "description": "Système de génération de PDF professionnel avec @react-pdf/renderer pour créer des CV téléchargeables",
+          "technologies": ["@react-pdf/renderer", "React"],
+          "tools": [],
+          "updates": [],
+          "images": []
+        }
+      ],
+      "technologies": ["React", "TypeScript", "Tailwind CSS", "@react-pdf/renderer"],
+      "outils": [],
+      "updates": [
+        {
+          "date": "2025",
+          "description": "Refonte complète en React avec Tailwind CSS pour une meilleure performance web et génération PDF simplifiée"
+        },
+        {
+          "date": "2024",
+          "description": "Tentative de version Flutter abandonnée à cause de la complexité de génération PDF depuis le web"
+        }
+      ],
+      "images": []
+    },
+    {
+      "id": 5,
+      "name": "Hydroponie",
+      "startDate": "2020",
+      "endDate": "2021",
+      "status": "archive",
+      "description": "Système hydroponique automatisé avec contrôle Arduino et surveillance des paramètres",
+      "categories": ["gardening", "electronics"],
+      "expandable": true,
+      "subProjects": [
+        {
+          "id": 1,
+          "name": "Système de contrôle Arduino",
+          "startDate": "2020",
+          "endDate": "2021",
+          "description": "Développement du système de contrôle automatisé avec Arduino pour gérer l'arrosage et l'éclairage",
+          "technologies": ["Arduino", "C++"],
+          "tools": [],
+          "updates": [],
+          "images": []
+        },
+        {
+          "id": 2,
+          "name": "Installation physique",
+          "startDate": "2020",
+          "endDate": "2021",
+          "description": "Conception et installation du système hydroponique avec réservoirs, pompes et capteurs",
+          "technologies": [],
+          "tools": [],
+          "updates": [],
+          "images": []
+        }
+      ],
+      "technologies": ["Arduino", "C++"],
+      "outils": ["Pompes à eau", "Capteurs pH", "Éclairage LED"],
+      "updates": [],
+      "images": []
+    },
+    {
+      "id": 4,
+      "name": "Aquaponie",
+      "startDate": "2021",
+      "endDate": null,
+      "status": "enCours",
+      "description": "Système aquaponique en développement avec cultivation DWC et contrôle automatisé",
+      "categories": ["gardening", "electronics"],
+      "expandable": true,
+      "subProjects": [
+        {
+          "id": 1,
+          "name": "Système DWC (Deep Water Culture)",
+          "startDate": "2024",
+          "endDate": null,
+          "description": "Implémentation réussie du système DWC pour la culture de fraises, tomates, concombres et ciboulette avec contrôle de l'irrigation",
+          "technologies": ["Arduino"],
+          "tools": [],
+          "updates": [],
+          "images": []
+        },
+        {
+          "id": 2,
+          "name": "Expérimentation NFT",
+          "startDate": "2024",
+          "endDate": "2024",
+          "description": "Tests avec le système NFT (Nutrient Film Technique) qui n'ont pas donné de bons résultats pour les grandes plantes, la structure n'était pas suffisamment solide",
+          "technologies": ["Arduino"],
+          "tools": [],
+          "updates": [],
+          "images": []
+        }
+      ],
+      "technologies": ["Arduino"],
+      "outils": ["Pompes à eau", "Lampes de croissance", "Système DWC"],
+      "updates": [
+        {
+          "date": "2025",
+          "description": "Mise en place du système DWC (Deep Water Culture) avec succès pour fraises, tomates, concombres, ciboulette"
+        },
+        {
+          "date": "2025",
+          "description": "Culture réussie de tomates utilisant des lampes de croissance spécifiques et des pompes à eau contrôlées par Arduino pour la gestion précise de l'irrigation"
+        },
+        {
+          "date": "2024",
+          "description": "Expérimentation avec NFT (Nutrient Film Technique) qui n'a pas donné de bons résultats, l'installation et l'espace n'étaient pas adaptés aux grandes plantes comme les concombres"
+        }
+      ],
+      "images": []
+    },
+    {
+      "id": 3,
+      "name": "Application entreprise",
+      "startDate": "2018",
+      "endDate": "2019",
+      "status": "archive",
+      "description": "Application de gestion d'entreprise avec interface WPF et base de données SQLite",
+      "categories": ["informatics"],
+      "expandable": true,
+      "subProjects": [
+        {
+          "id": 1,
+          "name": "Interface utilisateur WPF",
+          "startDate": "2018",
+          "endDate": "2019",
+          "description": "Développement de l'interface utilisateur avec WPF en utilisant le pattern MVVM pour la séparation des responsabilités",
+          "technologies": ["WPF", "MVVM", "XAML"],
+          "tools": [],
+          "updates": [],
+          "images": []
+        },
+        {
+          "id": 2,
+          "name": "Base de données et logique métier",
+          "startDate": "2018",
+          "endDate": "2019",
+          "description": "Implémentation de la couche de données avec SQLite et de la logique métier avec .NET Core",
+          "technologies": ["SQLite", ".NetCore", "Entity Framework"],
+          "tools": [],
+          "updates": [],
+          "images": []
+        }
+      ],
+      "technologies": ["WPF", "MVVM", "SQLite", ".NetCore", "XAML"],
+      "outils": ["Visual Studio", "SQLite Browser"],
+      "updates": [],
+      "images": []
+    },
+    {
+      "id": 2,
+      "name": "Infrastructure Serveur Unraid",
+      "startDate": "2023",
+      "endDate": null,
+      "status": "enCours",
+      "description": "Infrastructure serveur domestique complète fonctionnant sous Unraid avec plusieurs services et machines virtuelles pour le développement, l'automatisation et la gestion de la maison",
+      "categories": ["informatics"],
+      "expandable": true,
+      "subProjects": [
+        {
+          "id": 1,
+          "name": "Docker Registry",
+          "startDate": "2023",
+          "endDate": null,
+          "description": "Registre Docker privé pour stocker et gérer les images de conteneurs",
+          "technologies": [],
+          "tools": [],
+          "updates": [],
+          "images": []
+        },
+        {
+          "id": 2,
+          "name": "Ollama",
+          "startDate": "2023",
+          "endDate": null,
+          "description": "Déploiement local de LLM pour l'hébergement et l'inférence de modèles d'IA",
+          "technologies": [],
+          "tools": [],
+          "updates": [],
+          "images": []
+        },
+        {
+          "id": 3,
+          "name": "Open WebUI",
+          "startDate": "2023",
+          "endDate": null,
+          "description": "Interface web pour interagir avec les modèles LLM locaux",
+          "technologies": [],
+          "tools": [],
+          "updates": [],
+          "images": []
+        },
+        {
+          "id": 4,
+          "name": "Nginx",
+          "startDate": "2023",
+          "endDate": null,
+          "description": "Proxy inverse et répartiteur de charge pour les services web",
+          "technologies": [],
+          "tools": [],
+          "updates": [],
+          "images": []
+        },
+        {
+          "id": 5,
+          "name": "VM de Développement",
+          "startDate": "2023",
+          "endDate": null,
+          "description": "Machine virtuelle pour les environnements de développement",
+          "technologies": [],
+          "tools": [],
+          "updates": [],
+          "images": []
+        },
+        {
+          "id": 6,
+          "name": "VM Agent GitHub",
+          "startDate": "2023",
+          "endDate": null,
+          "description": "Machine virtuelle pour l'exécuteur GitHub actions et le déploiement de services",
+          "technologies": [],
+          "tools": [],
+          "updates": [],
+          "images": []
+        },
+        {
+          "id": 7,
+          "name": "n8n",
+          "startDate": "2023",
+          "endDate": null,
+          "description": "Plateforme d'automatisation de flux de travail pour intégrer divers services et API",
+          "technologies": [],
+          "tools": [],
+          "updates": [],
+          "images": []
+        },
+        {
+          "id": 8,
+          "name": "Keycloak",
+          "startDate": "2023",
+          "endDate": null,
+          "description": "Solution de gestion d'identité et d'accès pour les services d'authentification",
+          "technologies": [],
+          "tools": [],
+          "updates": [],
+          "images": []
+        },
+        {
+          "id": 9,
+          "name": "Bases de données PostgreSQL",
+          "startDate": "2023",
+          "endDate": null,
+          "description": "Plusieurs instances de bases de données PostgreSQL pour diverses applications",
+          "technologies": [],
+          "tools": [],
+          "updates": [],
+          "images": []
+        },
+        {
+          "id": 10,
+          "name": "Zigbee2MQTT",
+          "startDate": "2023",
+          "endDate": null,
+          "description": "Passerelle pour les appareils Zigbee vers MQTT pour la domotique",
+          "technologies": [],
+          "tools": [],
+          "updates": [],
+          "images": []
+        },
+        {
+          "id": 11,
+          "name": "Home Assistant",
+          "startDate": "2023",
+          "endDate": null,
+          "description": "Plateforme domotique open source pour la gestion de la maison intelligente",
+          "technologies": [],
+          "tools": [],
+          "updates": [],
+          "images": []
+        },
+        {
+          "id": 12,
+          "name": "Frigate",
+          "startDate": "2023",
+          "endDate": null,
+          "description": "NVR avec détection d'objets par IA en temps réel pour les caméras de sécurité",
+          "technologies": [],
+          "tools": [],
+          "updates": [],
+          "images": []
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Meuble TV en bois",
+      "startDate": "Janvier 2024",
+      "endDate": "Mars 2024",
+      "status": "termine",
+      "description": "Construction d'un meuble TV sur mesure en bois massif avec étagères intégrées pour optimiser l'espace du salon. Projet de menuiserie artisanale incluant conception, découpe, assemblage et finition.",
+      "categories": ["wood"],
+      "expandable": true,
+      "outils": ["Scie circulaire", "Perceuse", "Ponceuse", "Équerre", "Serre-joints"],
+      "updates": [
+        {
+          "date": "Mars 2024",
+          "description": "Finalisation du vernissage et installation dans le salon"
+        },
+        {
+          "date": "Février 2024",
+          "description": "Assemblage des éléments et ponçage"
+        },
+        {
+          "date": "Janvier 2024",
+          "description": "Conception et découpe des planches de bois"
+        }
+      ],
+      "images": [
+        {
+          "url": "/images/projects/tv_stand.jpg",
+          "type": "photo"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Séchoir Solaire pour Légumes et Fruits",
+      "startDate": "2024",
+      "endDate": null,
+      "status": "enCours",
+      "description": "Système de chauffage solaire pour sécher légumes et fruits utilisant la collecte de chaleur naturelle et un contrôle automatique de la température",
+      "categories": ["wood"],
+      "expandable": true,
+      "subProjects": [
+        {
+          "id": 1,
+          "name": "Structure en Bois",
+          "startDate": "2024",
+          "endDate": null,
+          "description": "Construction du cadre en bois pour le séchoir solaire. La partie supérieure est terminée et fonctionnelle, mais la structure de base doit encore être correctement installée et fixée",
+          "technologies": [],
+          "tools": [],
+          "updates": [],
+          "images": []
+        },
+        {
+          "id": 2,
+          "name": "Système de Contrôle Automatique du Ventilateur",
+          "startDate": "2024",
+          "endDate": null,
+          "description": "Système électronique avec capteur de température et activation automatique du ventilateur lorsque la température dépasse 50°C pour optimiser la circulation d'air et l'efficacité de séchage",
+          "technologies": ["Arduino"],
+          "tools": [],
+          "updates": [],
+          "images": []
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Bibliothèque de livres",
+      "startDate": "2018",
+      "endDate": "2018",
+      "status": "archive",
+      "description": "Application web de gestion de bibliothèque personnelle",
+      "categories": ["informatics"],
+      "expandable": true,
+      "technologies": ["HTML5", "CSS3", "KnockoutJs", "Mysql", "Python", "Linux", "Docker", "Node.js"],
+      "outils": [],
+      "updates": [],
+      "images": []
+    }
+  ],
+  "recommendations": [
+    {
+      "id": 3,
+      "nomEntreprise": "Deloitte",
+      "nomPersonne": "Imade Bouglouf",
+      "metier": "IT Manager",
+      "liens": "https://www.linkedin.com/in/imade-bouglouf-546489a4/",
+      "recommendation": "I had the privilege of working with Rémi, who had strengthened my team for over 6 months on a complex project in 2023. His ability to turn challenges into opportunities, his solid technical knowledge and his innovative ideas were key to the success of the project. He quickly integrated himself into the team and was able to share his best practices. In this way, he left a lasting impression on our team and the project. Rémi is a very good professional with whom I enjoyed working and whom I highly recommend.",
+      "translated": "J'ai eu le privilège de travailler avec Rémi, qui avait renforcé mon équipe pendant plus de 6 mois sur un projet complexe en 2023. Sa capacité à transformer les défis en opportunités, ses solides connaissances techniques et ses idées innovantes ont été la clé du succès du projet. Il s'est rapidement intégré dans l'équipe et a su partager ses meilleures pratiques. De cette façon, il a laissé une impression durable sur notre équipe et le projet. Rémi est un très bon professionnel avec qui j'ai pris plaisir à travailler et que je recommande vivement.",
+      "logo1": "/images/experiences/DELOITTE.png"
+    },
+    {
+      "id": 2,
+      "nomEntreprise": "CIBTP",
+      "nomPersonne": "Olivier TELLE",
+      "metier": "Product owner",
+      "liens": "https://www.linkedin.com/in/oliviertelle/",
+      "recommendation": "En tant que Product owner, j'ai beaucoup apprécié de travailler en équipe avec Rémi. En dehors de ses qualités de développeur, c'est une personne autonome, dynamique et fiable. Il a su être force de proposition et toujours constructif dans nos échanges. Il a également co-encadré un développeur junior pour sa montée en compétence. je travaillerais de nouveau avec lui avec plaisir si l'opportunité se représentait.",
+      "logo1": "/images/experiences/CIBTP.png"
+    },
+    {
+      "id": 1,
+      "nomEntreprise": "Sercel",
+      "nomPersonne": "Clement VISSEAUX",
+      "metier": "Chef de projet",
+      "liens": "https://www.linkedin.com/in/clément-visseaux-2964453b/",
+      "recommendation": "Je soussigné, Clément Visseaux, chef de projet chez Sercel, que Rémi Rousseau a travaillé de mai 2019 à juillet 2020 sur un projet industriel, sous ma responsabilité.<br>Rémi a donné entière satisfaction sur les objectifs qui lui ont été fixés.<br><br>Rémi a travaillé sur une application industrielle, pilotant un système externe complexe<br>Il a pris en charge :<br>• La réalisation des interfaces utilisateurs écrites en WPF, avec la mise en place d'un pattern dérivé du MVVM<br>• La communication avec un serveur de data au travers d'une API REST pour piloter ce système externe.<br>• L'écriture d'une base de données, avec les possibilité de pouvoir faire des requêtes très flexibles sur l'ensemble des objets en base.<br>• Les tests unitaires, l'intégration continue, et la mise en place d'outils de mesure de la qualité du code comme Sonar<br><br>Il a montré beaucoup d'enthousiasme et de rigueur pour mettre en place des techniques de programmation fiables et robustes.<br>Il a vraiment eu le souci d'améliorer le logiciel, en faisant régulièrement des propositions innovantes.<br>A la fois curieux et entreprenant, partageant ses connaissances, il nous a permis de mener à son terme en temps et en heure les développements qui lui ont été confiés.<br>D'un caractère très sociable, il s'est vite et bien intégré à l'équipe.<br><br>Clément Visseaux<br>Sercel",
+      "logo1": "/images/experiences/sercel.png"
+    }
+  ]
+}

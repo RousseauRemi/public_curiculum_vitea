@@ -1,0 +1,100 @@
+{
+  "navigation": {
+    "home": "Home",
+    "skills": "Skills",
+    "experience": "Experience",
+    "education": "Education",
+    "projects": "Projects",
+    "recommendations": "Recommendations",
+    "downloadCV": "Download CV",
+    "languageToggle": "Language",
+    "scrollProgress": "Scroll Progress",
+    "clickToNavigate": "Click to navigate to section"
+  },
+  "sections": {
+    "aboutMe": "About Me",
+    "technicalSkills": "Technical Skills",
+    "professionalExperience": "Professional Experience",
+    "education": "Education",
+    "personalProjects": "Internal Projects",
+    "recommendations": "Recommendations"
+  },
+  "availability": {
+    "available-free": "Available and free immediately",
+    "in-mission-open": "Currently in mission but open to opportunities"
+  },
+  "skills": {
+    "junior": "Junior",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced"
+  },
+  "projects": {
+    "title": "Internal Projects",
+    "subtitle": "Discover my various personal and professional projects",
+    "description": "Description",
+    "technologies": "Technologies",
+    "images": "Images",
+    "subProjects": "Project Modules",
+    "noProjects": "No projects found for the selected criteria",
+    "projectFound": "project found",
+    "projectsFound": "projects found",
+    "filterAll": "All",
+    "filterByStatus": "Filter by status",
+    "filterByCategory": "Filter by category",
+    "categories": {
+      "all": "All categories",
+      "informatics": "Informatics",
+      "gardening": "Gardening",
+      "wood": "Woodworking",
+      "electronics": "Electronics"
+    },
+    "states": {
+      "enReflexion": "In Reflection",
+      "demarre": "Started",
+      "enCours": "In Progress",
+      "termine": "Completed",
+      "archive": "Archived"
+    },
+    "tools": "Tools",
+    "duration": "Duration",
+    "status": "Status"
+  },
+  "experience": {
+    "current": "Current",
+    "technologies": "Technologies",
+    "tools": "Tools",
+    "mission": "Mission",
+    "objectives": "Objectives",
+    "context": "Context",
+    "team": "Team",
+    "endCondition": "End Condition"
+  },
+  "education": {
+    "diplomas": "Diplomas",
+    "period": "Period",
+    "location": "Location"
+  },
+  "common": {
+    "readMore": "Read More",
+    "readLess": "Read Less",
+    "openInNewTab": "Open in new tab",
+    "loading": "Loading...",
+    "error": "Error",
+    "close": "Close"
+  },
+  "contact": {
+    "email": "Email",
+    "phone": "Phone",
+    "location": "Location",
+    "linkedin": "LinkedIn",
+    "github": "GitHub"
+  },
+  "home": {
+    "title": "Full Stack Developer",
+    "subtitle": "Passionate about modern web development",
+    "description": "Expert in web application development with solid experience in front-end and back-end technologies.",
+    "availability": "Availability",
+    "downloadCV": "Download my CV",
+    "contactMe": "Contact me"
+  }
+}

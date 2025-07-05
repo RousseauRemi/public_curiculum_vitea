@@ -1,0 +1,864 @@
+/* PDF-specific styles for HTML-to-PDF generation */
+
+/* Global PDF styles */
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  
+  @page {
+    margin: 0.75in;
+    size: A4;
+  }
+  
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+    font-size: 11px !important;
+    line-height: 1.3 !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  
+  /* Hide navigation and interactive elements */
+  nav,
+  .navigation,
+  .scroll-progress-bar,
+  .scroll-to-top,
+  .mobile-menu-toggle,
+  .hover-only,
+  button[aria-label*="menu"],
+  .voir-plus-button,
+  .show-more-btn,
+  .toggle-details,
+  .print-hidden {
+    display: none !important;
+  }
+  
+  /* Remove margins and padding from main layout */
+  .desktop\:ml-64 {
+    margin-left: 0 !important;
+  }
+  
+  .pt-16,
+  .desktop\:pt-0 {
+    padding-top: 0 !important;
+  }
+  
+  .min-h-screen {
+    min-height: auto !important;
+  }
+  
+  /* Show expanded content */
+  .expanded-content,
+  .full-details,
+  .experience-details,
+  .mission-details,
+  .objectives-list,
+  .tools-list {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  
+  /* Ensure backgrounds print */
+  .bg-gradient-to-br,
+  .bg-gradient-to-r,
+  .bg-gradient-hero,
+  .bg-gradient-primary,
+  .bg-gradient-secondary,
+  [class*="bg-primary"],
+  [class*="bg-secondary"],
+  [class*="bg-accent"],
+  [class*="bg-blue"],
+  [class*="bg-green"],
+  [class*="bg-red"],
+  [class*="bg-yellow"] {
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  
+  /* Section styling */
+  section {
+    margin-bottom: 1.5rem !important;
+    padding: 1rem 0 !important;
+  }
+  
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+  
+  /* Card components */
+  .experience-card,
+  .project-card,
+  .education-card,
+  .recommendation-card {
+    page-break-inside: avoid;
+    margin-bottom: 1rem !important;
+    break-inside: avoid;
+  }
+  
+  /* Remove shadows for better print quality */
+  .shadow-lg,
+  .shadow-xl,
+  .shadow-2xl,
+  .shadow-professional,
+  .shadow-card {
+    box-shadow: none !important;
+  }
+  
+  /* Optimize spacing */
+  .py-16 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+  
+  .mb-16 {
+    margin-bottom: 1rem !important;
+  }
+  
+  .space-y-12 > * + * {
+    margin-top: 1rem !important;
+  }
+  
+  /* CRITICAL: Override all animations during print */
+  * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+    visibility: visible !important;
+  }
+  
+  /* Force all sections to be visible */
+  section,
+  section > *,
+  section > * > *,
+  section > * > * > * {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    display: block !important;
+  }
+  
+  /* Force specific components to be visible */
+  .experience-card,
+  .project-card,
+  .education-card,
+  .recommendation-card,
+  .skill-item {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    display: block !important;
+  }
+  
+  /* Hide timeline elements in print */
+  .timeline-line,
+  .timeline-dot {
+    display: none !important;
+  }
+  
+  /* Remove left padding in print when timeline is hidden */
+  .pdf-timeline-adjust {
+    padding-left: 0 !important;
+  }
+  
+  /* Hide PDF download buttons and availability status in print */
+  .pdf-buttons,
+  .availability-status {
+    display: none !important;
+  }
+  
+  /* Skills section - hide charts in print */
+  .chart {
+    display: none !important;
+  }
+  
+  /* Show all skill categories in print */
+  .pdf-skill-category {
+    margin-bottom: 2rem;
+    page-break-inside: avoid;
+  }
+  
+  /* Show project details in print */
+  .pdf-project-details {
+    display: block !important;
+  }
+  
+  /* Project state groups in PDF */
+  .pdf-project-state-group {
+    margin-bottom: 2rem;
+    page-break-inside: avoid;
+  }
+  
+  /* Hide short description in print when showing full details */
+  .line-clamp-2 {
+    display: none !important;
+  }
+  
+  /* Optimize project images for print */
+  .project-image {
+    max-width: 48% !important;
+    max-height: 400px !important;
+    min-width: 200px !important;
+    min-height: 150px !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    background-color: transparent !important;
+    border: 1px solid #ddd !important;
+    border-radius: 4px !important;
+    display: block !important;
+    margin: 0 auto !important;
+  }
+  
+  /* Remove only page/section background colors for print */
+  section {
+    background: white !important;
+    background-color: white !important;
+    background-image: none !important;
+  }
+  
+  .bg-gradient-to-br.from-gray-50,
+  .bg-gradient-to-br.from-slate-50,
+  .bg-gradient-to-br.from-blue-50,
+  .bg-secondary-50 {
+    background: white !important;
+    background-color: white !important;
+    background-image: none !important;
+  }
+  
+  /* Use two columns for images side by side in print */
+  .pdf-image-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 2rem !important;
+    align-items: center !important;
+    justify-items: center !important;
+  }
+}
+
+/* PDF Mode - Applied when generating PDF */
+body.generating-pdf {
+  overflow: visible !important;
+}
+
+/* Apply PDF styles when body has generating-pdf class */
+body.generating-pdf * {
+  -webkit-print-color-adjust: exact !important;
+  color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
+
+body.generating-pdf html,
+body.generating-pdf body {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: white !important;
+  font-size: 11px !important;
+  line-height: 1.3 !important;
+  width: 100% !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+/* Hide navigation when in PDF mode */
+body.generating-pdf nav,
+body.generating-pdf .navigation,
+body.generating-pdf .scroll-progress-bar,
+body.generating-pdf .scroll-to-top,
+body.generating-pdf .mobile-menu-toggle,
+body.generating-pdf .hover-only,
+body.generating-pdf button[aria-label*="menu"],
+body.generating-pdf .voir-plus-button,
+body.generating-pdf .show-more-btn,
+body.generating-pdf .toggle-details,
+body.generating-pdf .print-hidden {
+  display: none !important;
+}
+
+/* Layout adjustments for PDF */
+body.generating-pdf .desktop\:ml-64 {
+  margin-left: 0 !important;
+}
+
+body.generating-pdf .pt-16,
+body.generating-pdf .desktop\:pt-0 {
+  padding-top: 0 !important;
+}
+
+body.generating-pdf .min-h-screen {
+  min-height: auto !important;
+}
+
+/* Show expanded content in PDF */
+body.generating-pdf .expanded-content,
+body.generating-pdf .full-details,
+body.generating-pdf .experience-details,
+body.generating-pdf .mission-details,
+body.generating-pdf .objectives-list,
+body.generating-pdf .tools-list {
+  display: block !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+/* Section styling for PDF */
+body.generating-pdf section {
+  margin-bottom: 1.5rem !important;
+  padding: 1rem 0 !important;
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Card components for PDF */
+body.generating-pdf .experience-card,
+body.generating-pdf .project-card,
+body.generating-pdf .education-card,
+body.generating-pdf .recommendation-card {
+  margin-bottom: 1rem !important;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+/* Remove shadows in PDF */
+body.generating-pdf .shadow-lg,
+body.generating-pdf .shadow-xl,
+body.generating-pdf .shadow-2xl,
+body.generating-pdf .shadow-professional,
+body.generating-pdf .shadow-card {
+  box-shadow: none !important;
+}
+
+/* Optimize spacing for PDF */
+body.generating-pdf .py-16 {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
+body.generating-pdf .mb-16 {
+  margin-bottom: 1rem !important;
+}
+
+body.generating-pdf .space-y-12 > * + * {
+  margin-top: 1rem !important;
+}
+
+/* Hide timeline elements in PDF */
+body.generating-pdf .timeline-line,
+body.generating-pdf .timeline-dot {
+  display: none !important;
+}
+
+/* Remove left padding in PDF when timeline is hidden */
+body.generating-pdf .pdf-timeline-adjust {
+  padding-left: 0 !important;
+}
+
+/* Hide PDF download buttons and availability status in PDF */
+body.generating-pdf .pdf-buttons,
+body.generating-pdf .availability-status {
+  display: none !important;
+}
+
+/* Show project details in PDF */
+body.generating-pdf .pdf-project-details {
+  display: block !important;
+}
+
+/* Project state groups in PDF */
+body.generating-pdf .pdf-project-state-group {
+  margin-bottom: 2rem;
+  page-break-inside: avoid;
+}
+
+/* Hide short description in PDF when showing full details */
+body.generating-pdf .line-clamp-2 {
+  display: none !important;
+}
+
+/* Hide web-only technologies (summary with +X) in PDF */
+body.generating-pdf .web-only-technologies {
+  display: none !important;
+}
+
+/* Optimize project images for PDF - maintain aspect ratios */
+body.generating-pdf .project-image {
+  width: 100% !important;
+  max-height: 300px !important;
+  height: auto !important;
+  object-fit: contain !important;
+  background-color: white !important;
+  border: 1px solid #ddd !important;
+  border-radius: 6px !important;
+  display: block !important;
+  margin: 0 auto 8px auto !important;
+  padding: 4px !important;
+}
+
+/* Single image layout - much larger and more prominent */
+body.generating-pdf .project-image-single {
+  width: 100% !important;
+  max-height: 500px !important;
+  min-height: 200px !important;
+  height: auto !important;
+  object-fit: contain !important;
+  background-color: white !important;
+  border: 1px solid #ddd !important;
+  border-radius: 8px !important;
+  display: block !important;
+  margin: 0 auto !important;
+  padding: 8px !important;
+}
+
+/* Second image (mobile overlay) */
+body.generating-pdf .project-image:nth-child(2) {
+  position: absolute !important;
+  top: -20px !important;
+  right: 20px !important;
+  width: auto !important;
+  height: 300px !important;
+  max-width: none !important;
+  object-fit: contain !important;
+  background-color: white !important;
+  border: 2px solid #333 !important;
+  border-radius: 6px !important;
+  padding: 3px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  z-index: 10 !important;
+}
+
+
+/* Clean section and page backgrounds for PDF */
+body.generating-pdf section {
+  background: white !important;
+  background-color: white !important;
+  background-image: none !important;
+}
+
+/* Remove all subtle background colors in PDF (except home page) */
+body.generating-pdf section:not(#home) .bg-gradient-to-br.from-gray-50,
+body.generating-pdf section:not(#home) .bg-gradient-to-br.from-slate-50,
+body.generating-pdf section:not(#home) .bg-gradient-to-br.from-blue-50,
+body.generating-pdf section:not(#home) .from-gray-50,
+body.generating-pdf section:not(#home) .from-slate-50,
+body.generating-pdf section:not(#home) .from-blue-50,
+body.generating-pdf section:not(#home) .to-gray-100,
+body.generating-pdf section:not(#home) .to-slate-100,
+body.generating-pdf section:not(#home) .to-blue-100 {
+  background: white !important;
+  background-color: white !important;
+  background-image: none !important;
+}
+
+/* Create mobile-like overlay layout for images in PDF */
+body.generating-pdf .pdf-image-grid {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  gap: 0 !important;
+}
+
+/* CRITICAL: Override all Framer Motion animations for PDF */
+body.generating-pdf [data-framer-motion-id],
+body.generating-pdf .motion-div,
+body.generating-pdf [style*="opacity"],
+body.generating-pdf [style*="transform"] {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+  position: static !important;
+  left: auto !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+}
+
+/* Force all motion elements to be visible */
+body.generating-pdf * {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+/* Specifically target common animation states */
+body.generating-pdf [style*="opacity: 0"],
+body.generating-pdf [style*="opacity:0"] {
+  opacity: 1 !important;
+}
+
+body.generating-pdf [style*="translateY"],
+body.generating-pdf [style*="translateX"],
+body.generating-pdf [style*="translate3d"],
+body.generating-pdf [style*="scale"] {
+  transform: none !important;
+}
+
+/* Ensure all sections and their content are visible */
+body.generating-pdf section,
+body.generating-pdf section > *,
+body.generating-pdf section > * > *,
+body.generating-pdf section > * > * > * {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+/* Force specific component visibility */
+body.generating-pdf .experience-card,
+body.generating-pdf .project-card,
+body.generating-pdf .education-card,
+body.generating-pdf .recommendation-card,
+body.generating-pdf .skill-item {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+
+/* Optimize home section for PDF */
+body.generating-pdf .min-h-screen {
+  min-height: auto !important;
+}
+
+/* Compact profile image for PDF */
+body.generating-pdf #home .w-40,
+body.generating-pdf #home .h-40,
+body.generating-pdf #home .lg\\:w-48,
+body.generating-pdf #home .lg\\:h-48 {
+  width: 8rem !important;
+  height: 8rem !important;
+}
+
+body.generating-pdf .scroll-progress-bar,
+body.generating-pdf .scroll-to-top,
+body.generating-pdf nav,
+body.generating-pdf .navigation {
+  display: none !important;
+}
+
+body.generating-pdf .desktop\:ml-64 {
+  margin-left: 0 !important;
+}
+
+body.generating-pdf .pt-16,
+body.generating-pdf .desktop\:pt-0 {
+  padding-top: 0 !important;
+}
+
+
+/* Enhanced PDF Mode */
+body.pdf-type-enhanced .progress-bar {
+  background: #f3f4f6 !important;
+  height: 8px !important;
+  border-radius: 4px !important;
+  overflow: hidden;
+}
+
+body.pdf-type-enhanced .progress-fill {
+  border-radius: 4px !important;
+  height: 100% !important;
+}
+
+/* PDF-specific content visibility */
+.pdf-only {
+  display: none;
+}
+
+body.generating-pdf .pdf-only {
+  display: block !important;
+}
+
+/* Hide elements that should not appear in PDF - multiple selector approaches */
+body.generating-pdf .generating-pdf\:hidden,
+body.generating-pdf [class*="generating-pdf:hidden"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Show elements that should appear only in PDF */
+body.generating-pdf .generating-pdf\:block,
+body.generating-pdf [class*="generating-pdf:block"] {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+}
+
+.print-hidden {
+  display: block;
+}
+
+body.generating-pdf .print-hidden {
+  display: none !important;
+}
+
+@media print {
+  .print-hidden {
+    display: none !important;
+  }
+}
+
+/* Expand all collapsible content for PDF */
+body.generating-pdf .voir-plus-button,
+body.generating-pdf .show-more-btn,
+body.generating-pdf .toggle-details {
+  display: none !important;
+}
+
+body.generating-pdf .expanded-content,
+body.generating-pdf .full-details {
+  display: block !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+/* Project images in PDF */
+body.generating-pdf .project-images {
+  display: block !important;
+}
+
+body.generating-pdf .project-image {
+  max-width: 100px;
+  max-height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #e5e7eb;
+}
+
+/* Experience details in PDF */
+body.generating-pdf .experience-details {
+  display: block !important;
+}
+
+body.generating-pdf .mission-details,
+body.generating-pdf .objectives-list,
+body.generating-pdf .tools-list {
+  display: block !important;
+}
+
+/* Skills formatting for PDF */
+body.generating-pdf .skill-category {
+  margin-bottom: 1.5rem;
+  page-break-inside: avoid;
+}
+
+body.generating-pdf .pdf-skill-category {
+  margin-bottom: 2rem;
+  page-break-inside: avoid;
+}
+
+body.generating-pdf .skill-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+
+/* Show skill descriptions in PDF */
+body.generating-pdf .pdf-skill-description {
+  display: block !important;
+}
+
+/* Hide chart in PDF mode */
+body.generating-pdf .chart {
+  display: none !important;
+}
+
+/* Technology badges in PDF */
+body.generating-pdf .tech-badge {
+  display: inline-block;
+  margin: 2px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+/* Recommendations in PDF */
+body.generating-pdf .recommendation-text {
+  font-style: italic;
+  margin-bottom: 0.5rem;
+  quotes: '"' '"';
+}
+
+body.generating-pdf .recommendation-text::before {
+  content: open-quote;
+}
+
+body.generating-pdf .recommendation-text::after {
+  content: close-quote;
+}
+
+/* Contact information in PDF */
+body.generating-pdf .contact-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+body.generating-pdf .contact-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+}
+
+/* Ensure proper spacing in PDF */
+body.generating-pdf .section-spacing {
+  margin-bottom: 2rem;
+}
+
+body.generating-pdf .content-spacing {
+  margin-bottom: 1rem;
+}
+
+/* Page break controls for better PDF layout */
+@media print {
+  .page-break-before {
+    page-break-before: always;
+  }
+  
+  .page-break-after {
+    page-break-after: always;
+  }
+  
+  .page-break-inside-avoid {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  
+  .pdf-project-item {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 1.5rem;
+  }
+  
+  .pdf-project-state-group {
+    page-break-before: auto;
+    margin-bottom: 2rem;
+  }
+  
+  .pdf-project-state-group:first-child {
+    page-break-before: avoid;
+  }
+}
+
+body.generating-pdf .page-break-before {
+  page-break-before: always;
+}
+
+body.generating-pdf .page-break-after {
+  page-break-after: always;
+}
+
+body.generating-pdf .page-break-inside-avoid {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+body.generating-pdf .pdf-project-item {
+  page-break-inside: avoid;
+  break-inside: avoid;
+  margin-bottom: 1.5rem;
+}
+
+body.generating-pdf .pdf-project-state-group {
+  page-break-before: auto;
+  margin-bottom: 2rem;
+}
+
+body.generating-pdf .pdf-project-state-group:first-child {
+  page-break-before: avoid;
+}
+
+/* Sub-project image grids for PDF */
+body.generating-pdf .grid-cols-2 {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 1rem !important;
+  align-items: start !important;
+  margin-bottom: 1rem !important;
+}
+
+/* Single image takes full width and maintains aspect ratio */
+body.generating-pdf .grid-cols-2 > div:only-child {
+  grid-column: 1 / -1 !important;
+  max-width: 600px !important;
+  margin: 0 auto !important;
+}
+
+/* Ensure landscape images get proper height */
+body.generating-pdf .grid-cols-2 > div:only-child .project-image {
+  max-height: 400px !important;
+}
+
+/* Image containers in sub-projects */
+body.generating-pdf .grid-cols-2 > div {
+  width: 100% !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+/* Sub-project containers in PDF - remove backgrounds */
+body.generating-pdf .bg-secondary-50 {
+  background-color: white !important;
+  margin-bottom: 1.5rem !important;
+  padding: 1rem !important;
+  page-break-inside: avoid !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 6px !important;
+}
+
+/* Remove all card and content backgrounds in PDF except headers */
+body.generating-pdf .bg-white,
+body.generating-pdf .bg-gray-50,
+body.generating-pdf .bg-slate-50,
+body.generating-pdf .bg-neutral-50,
+body.generating-pdf .project-card,
+body.generating-pdf .experience-card,
+body.generating-pdf .education-card,
+body.generating-pdf .recommendation-card {
+  background-color: white !important;
+  background-image: none !important;
+}
+
+/* Keep status and header backgrounds */
+body.generating-pdf .bg-primary-100,
+body.generating-pdf .bg-primary-200,
+body.generating-pdf .bg-accent-100,
+body.generating-pdf .bg-accent-200,
+body.generating-pdf .bg-warning-100,
+body.generating-pdf .bg-warning-200,
+body.generating-pdf .bg-success-100,
+body.generating-pdf .bg-success-200,
+body.generating-pdf .bg-secondary-100,
+body.generating-pdf .bg-secondary-200,
+body.generating-pdf [class*="bg-blue-"],
+body.generating-pdf [class*="bg-green-"],
+body.generating-pdf [class*="bg-orange-"],
+body.generating-pdf [class*="bg-yellow-"],
+body.generating-pdf [class*="bg-gradient-"] {
+  /* Keep these backgrounds as they are for badges and status indicators */
+  -webkit-print-color-adjust: exact !important;
+  color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
+
+/* Preserve home page backgrounds */
+body.generating-pdf #home .bg-gradient-to-br,
+body.generating-pdf #home .bg-gradient-hero,
+body.generating-pdf #home [class*="bg-gradient-"] {
+  -webkit-print-color-adjust: exact !important;
+  color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
