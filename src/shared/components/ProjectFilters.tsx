@@ -1,6 +1,6 @@
 import { memo, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Monitor, Sprout, Hammer, Zap } from 'lucide-react';
+import { Monitor, Sprout, Hammer, Zap, Briefcase, Heart } from 'lucide-react';
 import { useTranslation } from '../hooks/useTranslation';
 import { ProjectState, ProjectCategory } from '../../store/types';
 import type { ProjetInterne } from '../../store/types';
@@ -10,8 +10,10 @@ import { handleListNavigation } from '../utils/accessibility';
 interface ProjectFiltersProps {
   filter: string;
   categoryFilter: string;
+  ownerFilter: string;
   onFilterChange: (filter: string) => void;
   onCategoryFilterChange: (category: string) => void;
+  onOwnerFilterChange: (owner: string) => void;
   language: 'fr' | 'en';
   projects?: ProjetInterne[];
 }
@@ -19,8 +21,10 @@ interface ProjectFiltersProps {
 export const ProjectFilters = memo<ProjectFiltersProps>(({ 
   filter, 
   categoryFilter, 
+  ownerFilter,
   onFilterChange,
   onCategoryFilterChange,
+  onOwnerFilterChange,
   language,
   projects
 }) => {
@@ -47,6 +51,12 @@ export const ProjectFilters = memo<ProjectFiltersProps>(({
     { key: ProjectCategory.WOOD, label: t('projects.categories.wood'), icon: Hammer, color: 'bg-orange-100 text-orange-700' },
     { key: ProjectCategory.ELECTRONICS, label: t('projects.categories.electronics'), icon: Zap, color: 'bg-yellow-100 text-yellow-700' },
   ].filter(({ key }) => key === 'all' || !projects || presentCategories.has(key as ProjectCategory));
+
+  const ownerFilters = [
+    { key: 'all', label: t('projects.owner.all'), icon: null, color: 'bg-neutral-100 text-neutral-700' },
+    { key: 'company', label: t('projects.owner.company'), icon: Briefcase, color: 'bg-blue-100 text-blue-700' },
+    { key: 'personal', label: t('projects.owner.personal'), icon: Heart, color: 'bg-rose-100 text-rose-700' },
+  ];
 
   return (
     <motion.div
@@ -86,6 +96,32 @@ export const ProjectFilters = memo<ProjectFiltersProps>(({
               {statusFilter.label}
             </button>
           ))}
+        </div>
+      </div>
+
+      {/* Owner Filter (company vs personal) */}
+      <div>
+        <h3 className="text-lg font-semibold text-neutral-800 mb-3" id="owner-filter-label">{t('projects.filterByOwner')}</h3>
+        <div className="flex flex-wrap gap-2" role="group" aria-labelledby="owner-filter-label">
+          {ownerFilters.map((ownFilter) => {
+            const Icon = ownFilter.icon;
+            return (
+              <button
+                key={ownFilter.key}
+                onClick={() => onOwnerFilterChange(ownFilter.key)}
+                aria-pressed={ownerFilter === ownFilter.key}
+                aria-label={`${ownFilter.label} ${ownerFilter === ownFilter.key ? '(selected)' : ''}`}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 hover:scale-105 flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${
+                  ownerFilter === ownFilter.key
+                    ? `${ownFilter.color} ring-2 ring-offset-2 ring-primary-500`
+                    : `${ownFilter.color} hover:opacity-80`
+                }`}
+              >
+                {Icon && <Icon size={16} />}
+                {ownFilter.label}
+              </button>
+            );
+          })}
         </div>
       </div>
 

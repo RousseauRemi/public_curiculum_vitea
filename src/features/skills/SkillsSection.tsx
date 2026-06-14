@@ -8,19 +8,16 @@ import {
   ResponsiveContainer,
   Tooltip
 } from 'recharts';
-import { motion, AnimatePresence } from 'framer-motion';
 import SectionWrapper from '../../shared/components/SectionWrapper';
 import useAppStore from '../../store/useAppStore';
 import { useTranslation } from '../../shared/hooks/useTranslation';
 import { getTechnologyDotColor } from '../../shared/utils/technologyColors';
-import type { Competence } from '../../store/types';
 
 const SkillsSection: React.FC = () => {
   const { language, getCVData } = useAppStore();
   const { t } = useTranslation(language);
   const { competenceCategories } = getCVData();
   const [selectedCategory, setSelectedCategory] = useState(0);
-  const [hoveredSkill, setHoveredSkill] = useState<Competence | null>(null);
 
   const currentCategory = competenceCategories[selectedCategory];
 
@@ -108,31 +105,19 @@ const SkillsSection: React.FC = () => {
     });
     if (currentLine) lines.push(currentLine);
 
-    const lineHeight = 16;
-    const cardWidth = Math.max(Math.max(...lines.map(line => line.length)) * 9 + 20, 80);
-    const cardHeight = Math.max(lines.length * lineHeight + 12, 32);
+    const lineHeight = 14;
 
     return (
       <g transform={`translate(${x},${y})`}>
-        <rect
-          x={-cardWidth/2}
-          y={-cardHeight/2}
-          width={cardWidth}
-          height={cardHeight}
-          rx={8}
-          fill="#1d4ed8"
-          stroke="#1e40af"
-          strokeWidth={1}
-        />
         {lines.map((line, index) => (
           <text
             key={index}
             x={0}
             y={-((lines.length - 1) * lineHeight / 2) + (index * lineHeight)}
             textAnchor="middle"
-            fill="white"
+            fill="#334155"
             fontSize={12}
-            fontWeight="bold"
+            fontWeight={600}
             dominantBaseline="central"
           >
             {line}
@@ -177,10 +162,16 @@ const SkillsSection: React.FC = () => {
             <div className="flex-1 flex items-center justify-center p-4">
               <ResponsiveContainer width="100%" height={450}>
                 <RadarChart data={radarData} margin={{ top: 40, right: 40, bottom: 40, left: 40 }}>
+                  <defs>
+                    <linearGradient id="skillsRadarGradient" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stopColor="#2563eb" stopOpacity={0.5} />
+                      <stop offset="100%" stopColor="#14b8a6" stopOpacity={0.3} />
+                    </linearGradient>
+                  </defs>
                   <PolarGrid stroke="var(--color-secondary-200)" />
                   <PolarRadiusAxis
                     domain={[0, 3]}
-                    tick={{ fontSize: 10 }}
+                    tick={false}
                     tickCount={4}
                     axisLine={false}
                   />
@@ -188,9 +179,10 @@ const SkillsSection: React.FC = () => {
                     name="Skills"
                     dataKey="value"
                     stroke="var(--color-primary-600)"
-                    fill="var(--color-primary-500)"
-                    fillOpacity={0.5}
+                    fill="url(#skillsRadarGradient)"
+                    fillOpacity={1}
                     strokeWidth={2}
+                    dot={{ r: 3, fill: 'var(--color-primary-600)', strokeWidth: 0 }}
                   />
                   <Tooltip content={<CustomTooltip />} />
                   <PolarAngleAxis
@@ -203,12 +195,12 @@ const SkillsSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Skills grouped by level */}
-          <div className="skill-category bg-white rounded-2xl shadow-card border border-secondary-200 p-6 sm:p-8 flex flex-col">
-            <div className="space-y-8 flex-1">
+          {/* Skills grouped by level — dense rows with inline descriptions */}
+          <div className="skill-category bg-white rounded-2xl shadow-card border border-secondary-200 p-6 sm:p-8 flex flex-col justify-center">
+            <div className="space-y-6">
               {groupedSkills.map((group) => (
                 <div key={group.key}>
-                  <div className="flex items-center gap-2 mb-4">
+                  <div className="flex items-center gap-2 mb-2">
                     <span className={`w-2.5 h-2.5 rounded-full ${group.dot}`} />
                     <h3 className="font-display font-bold text-neutral-900">
                       {t(`skills.${group.key}`)}
@@ -217,59 +209,22 @@ const SkillsSection: React.FC = () => {
                       · {group.skills.length}
                     </span>
                   </div>
-                  <div className="flex flex-wrap gap-2">
+                  <div>
                     {group.skills.map((skill) => (
-                      <button
+                      <div
                         key={skill.label}
-                        type="button"
-                        className={`skill-item inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold border transition-all duration-200 cursor-default ${
-                          hoveredSkill?.label === skill.label
-                            ? 'bg-primary-50 border-primary-300 text-primary-700'
-                            : 'bg-secondary-50 border-secondary-200 text-neutral-700 hover:border-secondary-300'
-                        }`}
-                        onMouseEnter={() => setHoveredSkill(skill)}
-                        onMouseLeave={() => setHoveredSkill(null)}
-                        onFocus={() => setHoveredSkill(skill)}
-                        onBlur={() => setHoveredSkill(null)}
+                        className="skill-item flex items-center gap-3 py-2 border-b border-secondary-100 last:border-b-0"
                       >
-                        <span className={`w-1.5 h-1.5 rounded-full ${getTechnologyDotColor(skill.label)}`} />
-                        {skill.label}
-                      </button>
+                        <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${getTechnologyDotColor(skill.label)}`} />
+                        <span className="text-sm font-semibold text-neutral-800">{skill.label}</span>
+                        <span className="text-xs text-neutral-500 truncate flex-1 text-right min-w-0" title={skill.description}>
+                          {skill.description}
+                        </span>
+                      </div>
                     ))}
                   </div>
                 </div>
               ))}
-            </div>
-
-            {/* Description of the hovered skill */}
-            <div className="mt-8 min-h-[4.5rem]">
-              <AnimatePresence mode="wait">
-                {hoveredSkill ? (
-                  <motion.div
-                    key={hoveredSkill.label}
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -6 }}
-                    transition={{ duration: 0.15 }}
-                    className="bg-secondary-50 border border-secondary-200 rounded-xl p-4"
-                  >
-                    <p className="text-sm font-semibold text-neutral-900 mb-1">{hoveredSkill.label}</p>
-                    <p className="text-sm text-neutral-600">{hoveredSkill.description}</p>
-                  </motion.div>
-                ) : (
-                  <motion.p
-                    key="hint"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="text-sm text-neutral-400 italic p-4"
-                  >
-                    {language === 'fr'
-                      ? 'Survolez une compétence pour voir le détail.'
-                      : 'Hover a skill to see details.'}
-                  </motion.p>
-                )}
-              </AnimatePresence>
             </div>
           </div>
         </div>

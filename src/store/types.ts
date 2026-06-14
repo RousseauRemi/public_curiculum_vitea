@@ -1,5 +1,12 @@
 // Core data types for the CV application
 
+export interface ExperienceAtout {
+  /** Icon key: english | ai | newtech | fullapp | industry | critical */
+  icon: string;
+  label: string;
+  description: string;
+}
+
 export interface Experience {
   id: number;
   nomDeMission: string;
@@ -17,6 +24,7 @@ export interface Experience {
   equipe: string;
   logo1: string;
   logo2?: string;
+  atouts?: ExperienceAtout[];
 }
 
 export interface Competence {
@@ -74,6 +82,8 @@ export interface ProjetInterne {
   status: ProjectState;
   /** ISO "YYYY-MM" of the latest activity — drives newest-first sorting */
   sortDate?: string;
+  /** True for personal/hobby projects (vs internal company projects) */
+  personal?: boolean;
   expandable?: boolean;
   subProjects?: SubProject[];
   category?: ProjectCategory;

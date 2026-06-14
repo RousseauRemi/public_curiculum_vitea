@@ -29,8 +29,8 @@
     "advanced": "Advanced"
   },
   "projects": {
-    "title": "Personal Projects",
-    "subtitle": "What I build in my spare time: code, electronics, woodworking and gardening",
+    "title": "Internal & Personal Projects",
+    "subtitle": "Projects from my own company plus a few personal ones: code, electronics, woodworking and gardening",
     "description": "Description",
     "technologies": "Technologies",
     "images": "Images",
@@ -57,7 +57,13 @@
     },
     "tools": "Tools",
     "duration": "Duration",
-    "status": "Status"
+    "status": "Status",
+    "filterByOwner": "Filter by type",
+    "owner": {
+      "all": "All",
+      "company": "Company",
+      "personal": "Personal"
+    }
   },
   "experience": {
     "current": "Current",

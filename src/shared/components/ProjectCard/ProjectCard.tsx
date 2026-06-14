@@ -1,6 +1,6 @@
 import { memo, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, ExternalLink } from 'lucide-react';
+import { Calendar, ExternalLink, Heart, Briefcase } from 'lucide-react';
 import type { ProjetInterne } from '../../../store/types';
 import useAppStore from '../../../store/useAppStore';
 import { getStatusColor, getProjectName, getProjectStatus, getProjectDisplayDate, getAllTechnologies, getProjectCategories } from '../../utils/projectUtils';
@@ -57,6 +57,17 @@ export const ProjectCard = memo<ProjectCardProps>(({ project, index, isAnimated 
           <div className="flex items-center gap-3">
             <ProjectStatusBadge status={status} statusColor={statusColor} />
             <ProjectCategories categories={categories} />
+            {project.personal ? (
+              <span className="inline-flex items-center gap-1 bg-rose-50 text-rose-700 border border-rose-200 text-xs font-semibold px-2 py-0.5 rounded-full">
+                <Heart size={11} className="text-rose-500" />
+                {language === 'fr' ? 'Perso' : 'Personal'}
+              </span>
+            ) : (
+              <span className="inline-flex items-center gap-1 bg-blue-50 text-blue-700 border border-blue-200 text-xs font-semibold px-2 py-0.5 rounded-full">
+                <Briefcase size={11} className="text-blue-500" />
+                {language === 'fr' ? 'Entreprise' : 'Company'}
+              </span>
+            )}
           </div>
           <div className="flex items-center gap-2">
             {project.subProjects && project.subProjects.length > 1 && (

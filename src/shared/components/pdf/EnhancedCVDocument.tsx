@@ -1,6 +1,6 @@
 import { Document, Page, Text, View, StyleSheet, Image, Link, Font } from '@react-pdf/renderer';
 import type { CVData, ProjetInterne } from '../../../store/types';
-import { getTechnologyDotHex } from '../../utils/technologyColors';
+import { getTechnologyDotHex, getTechnologyChipHex } from '../../utils/technologyColors';
 
 // Same fonts as the website (index.css): Inter for body, Sora for display
 const fontBase = `${window.location.origin}/fonts`;
@@ -209,25 +209,15 @@ const s = StyleSheet.create({
     marginTop: 6,
   },
   chip: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: C.soft,
-    border: `1 solid ${C.border}`,
     borderRadius: 10,
-    paddingVertical: 2,
-    paddingHorizontal: 6,
+    paddingVertical: 2.5,
+    paddingHorizontal: 7,
     marginRight: 4,
     marginBottom: 4,
   },
-  chipDot: {
-    width: 4,
-    height: 4,
-    borderRadius: 2,
-    marginRight: 4,
-  },
   chipText: {
     fontSize: 7.5,
-    color: C.body,
+    fontWeight: 600,
   },
   // Cards (skills, education, projects)
   card: {
@@ -297,7 +287,8 @@ const s = StyleSheet.create({
     width: 22,
     height: 22,
     borderRadius: 11,
-    backgroundColor: C.primary,
+    backgroundColor: '#f1f5f9',
+    border: `1 solid ${C.border}`,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 8,
@@ -305,7 +296,7 @@ const s = StyleSheet.create({
   avatarText: {
     fontSize: 8,
     fontWeight: 700,
-    color: '#ffffff',
+    color: '#475569',
   },
   quoteText: {
     fontSize: 8.5,
@@ -397,12 +388,14 @@ export const EnhancedCVDocument = ({ data, language }: { data: CVData; language:
       ? `${project.startDate} – ${project.endDate}`
       : t(`Depuis ${project.startDate?.toLowerCase()}`, `Since ${project.startDate}`);
 
-  const Chip = ({ label, dot }: { label: string; dot?: string }) => (
-    <View style={s.chip}>
-      <View style={[s.chipDot, { backgroundColor: dot || getTechnologyDotHex(label) }]} />
-      <Text style={s.chipText}>{label}</Text>
-    </View>
-  );
+  const Chip = ({ label, colors }: { label: string; colors?: { bg: string; text: string } }) => {
+    const { bg, text } = colors || getTechnologyChipHex(label);
+    return (
+      <View style={[s.chip, { backgroundColor: bg }]}>
+        <Text style={[s.chipText, { color: text }]}>{label}</Text>
+      </View>
+    );
+  };
 
   const SectionHeader = ({ eyebrow, title }: { eyebrow: string; title: string }) => (
     <View minPresenceAhead={70}>
@@ -416,6 +409,48 @@ export const EnhancedCVDocument = ({ data, language }: { data: CVData; language:
     <View style={s.bulletRow}>
       <View style={s.bulletDot} />
       <Text style={s.bullet}>{children}</Text>
+    </View>
+  );
+
+  // Mission highlights ("atouts") — golden pills so the added value stands out
+  const AtoutsRow = ({ atouts, small }: { atouts?: { label: string }[]; small?: boolean }) =>
+    atouts && atouts.length > 0 ? (
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', marginTop: 4 }}>
+        {atouts.map((a, idx) => (
+          <View
+            key={idx}
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              backgroundColor: '#fef3c7',
+              border: '1 solid #fde68a',
+              borderRadius: 10,
+              paddingVertical: small ? 1.5 : 2,
+              paddingHorizontal: 6,
+              marginRight: 4,
+              marginBottom: 3,
+            }}
+          >
+            <View style={{ width: 4, height: 4, borderRadius: 2, backgroundColor: '#f59e0b', marginRight: 4 }} />
+            <Text style={{ fontSize: small ? 7 : 7.5, fontWeight: 600, color: '#92400e' }}>{a.label}</Text>
+          </View>
+        ))}
+      </View>
+    ) : null;
+
+  const OwnerPill = ({ personal, small }: { personal?: boolean; small?: boolean }) => (
+    <View
+      style={{
+        backgroundColor: personal ? '#ffe4e6' : '#dbeafe',
+        borderRadius: 8,
+        paddingVertical: small ? 1 : 1.5,
+        paddingHorizontal: 5,
+        marginRight: 5,
+      }}
+    >
+      <Text style={{ fontSize: small ? 6.5 : 7, fontWeight: 600, color: personal ? '#be123c' : '#1d4ed8' }}>
+        {personal ? t('Perso', 'Personal') : t('Entreprise', 'Company')}
+      </Text>
     </View>
   );
 
@@ -468,7 +503,7 @@ export const EnhancedCVDocument = ({ data, language }: { data: CVData; language:
               {data.personalInfo.prenom} {data.personalInfo.nom}
             </Text>
             <Text style={s.role}>{t('Développeur Fullstack', 'Fullstack Developer')}</Text>
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 7 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
               <View style={{ width: 5, height: 5, borderRadius: 2.5, backgroundColor: '#4ade80', marginRight: 4 }} />
               <Text style={{ fontSize: 7.5, color: C.heroMuted }}>
                 {t('En mission · ouvert aux opportunités', 'On assignment · open to opportunities')}
@@ -496,7 +531,7 @@ export const EnhancedCVDocument = ({ data, language }: { data: CVData; language:
           <Text style={s.paragraph}>{data.personalInfo.description}</Text>
           <View style={s.chipsRow}>
             {data.personalInfo.passions.map((passion, idx) => (
-              <Chip key={idx} label={passion} dot={C.accent} />
+              <Chip key={idx} label={passion} colors={{ bg: '#ccfbf1', text: '#0f766e' }} />
             ))}
           </View>
         </View>
@@ -522,6 +557,7 @@ export const EnhancedCVDocument = ({ data, language }: { data: CVData; language:
                     {exp.dateDebut} – {exp.dateFin || t('Aujourd’hui', 'Present')}
                   </Text>
                 </View>
+                <AtoutsRow atouts={exp.atouts} />
 
                 <Text style={[s.paragraph, { marginTop: 5 }]}>{exp.mission}</Text>
 
@@ -561,6 +597,7 @@ export const EnhancedCVDocument = ({ data, language }: { data: CVData; language:
                     {exp.dateDebut} – {exp.dateFin || t('Aujourd’hui', 'Present')}
                   </Text>
                 </View>
+                <AtoutsRow atouts={exp.atouts} small />
                 <Text style={[s.paragraph, { fontSize: 8.5, marginTop: 4 }]}>{exp.mission}</Text>
                 <View style={s.chipsRow}>
                   {exp.technologies.slice(0, 8).map((tech, idx) => (
@@ -585,7 +622,15 @@ export const EnhancedCVDocument = ({ data, language }: { data: CVData; language:
                   <View key={idx} style={s.skillRow}>
                     <Text style={s.skillLabel}>{comp.label}</Text>
                     <View style={s.barTrack}>
-                      <View style={[s.barFill, { width: 104 * (LEVEL_RATIO[comp.level] || 0.5) }]} />
+                      <View
+                        style={[
+                          s.barFill,
+                          {
+                            width: 104 * (LEVEL_RATIO[comp.level] || 0.5),
+                            backgroundColor: getTechnologyDotHex(comp.label),
+                          },
+                        ]}
+                      />
                     </View>
                     <Text style={s.levelText}>{levelLabel(comp.level)}</Text>
                   </View>
@@ -634,8 +679,8 @@ export const EnhancedCVDocument = ({ data, language }: { data: CVData; language:
         {data.projetsInternes && data.projetsInternes.length > 0 && (
           <View style={s.section}>
             <SectionHeader
-              eyebrow={t('Côté perso', 'Side projects')}
-              title={t('Projets personnels', 'Personal Projects')}
+              eyebrow={t('Entreprise & perso', 'Company & personal')}
+              title={t('Projets internes & personnels', 'Internal & Personal Projects')}
             />
 
             {featuredProjects.map((project) => {
@@ -647,6 +692,7 @@ export const EnhancedCVDocument = ({ data, language }: { data: CVData; language:
                       <Text style={s.cardTitle}>{project.name}</Text>
                       <Text style={[s.dates, { marginTop: 2 }]}>{projectDates(project)}</Text>
                     </View>
+                    <OwnerPill personal={project.personal} />
                     <StatusBadge status={project.status || 'enCours'} />
                   </View>
                   <Text style={[s.paragraph, { fontSize: 8.5, marginTop: 5 }]}>{project.description}</Text>
@@ -667,6 +713,7 @@ export const EnhancedCVDocument = ({ data, language }: { data: CVData; language:
                     <Text style={[s.cardTitle, { fontSize: 9.5 }]}>{project.name}</Text>
                     <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 2 }}>
                       <Text style={[s.dates, { fontSize: 7.5, marginRight: 6 }]}>{projectDates(project)}</Text>
+                      <OwnerPill personal={project.personal} small />
                       <StatusBadge status={project.status || 'enCours'} small />
                     </View>
                     <Text style={[s.paragraph, { fontSize: 7.5, lineHeight: 1.4, marginTop: 4 }]}>

@@ -24,6 +24,7 @@ const ProjectsSection: React.FC = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [filter, setFilter] = useState<string>('all');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
+  const [ownerFilter, setOwnerFilter] = useState<string>('all');
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [showAll, setShowAll] = useState(false);
 
@@ -38,7 +39,8 @@ const ProjectsSection: React.FC = () => {
       .filter(project => {
         const statusMatch = filter === 'all' || getProjectStatus(project) === filter;
         const categoryMatch = categoryFilter === 'all' || projectHasCategory(project, categoryFilter as ProjectCategory);
-        return statusMatch && categoryMatch;
+        const ownerMatch = ownerFilter === 'all' || (ownerFilter === 'personal') === !!project.personal;
+        return statusMatch && categoryMatch && ownerMatch;
       })
       .sort((a, b) => {
         const dateA = a.sortDate ?? '';
@@ -46,7 +48,7 @@ const ProjectsSection: React.FC = () => {
         // "YYYY-MM" strings compare chronologically; missing dates sink to the end
         return dateA !== dateB ? dateB.localeCompare(dateA) : b.id - a.id;
       });
-  }, [projetsInternes, filter, categoryFilter]);
+  }, [projetsInternes, filter, categoryFilter, ownerFilter]);
 
   // Memoized callback handlers
   const handleFilterChange = useCallback((newFilter: string) => {
@@ -103,7 +105,7 @@ const ProjectsSection: React.FC = () => {
     <SectionWrapper
       id="projects"
       title={t('projects.title')}
-      eyebrow={language === 'fr' ? 'Côté perso' : 'Side projects'}
+      eyebrow={language === 'fr' ? 'Entreprise & perso' : 'Company & personal'}
       subtitle={t('projects.subtitle')}
       className="section-light"
     >
@@ -111,8 +113,10 @@ const ProjectsSection: React.FC = () => {
         <ProjectFilters
           filter={filter}
           categoryFilter={categoryFilter}
+          ownerFilter={ownerFilter}
           onFilterChange={handleFilterChange}
           onCategoryFilterChange={handleCategoryFilterChange}
+          onOwnerFilterChange={setOwnerFilter}
           language={language}
           projects={projetsInternes}
         />

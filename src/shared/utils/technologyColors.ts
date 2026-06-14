@@ -22,7 +22,8 @@ const colorFamilies: Record<string, string> = {
   tools: 'from-gray-500 to-gray-600',
   testing: 'from-red-400 to-red-500',
   mobile: 'from-green-600 to-green-700',
-  devops: 'from-slate-600 to-slate-700'
+  devops: 'from-slate-600 to-slate-700',
+  ai: 'from-fuchsia-500 to-fuchsia-600'
 };
 
 // Technology to color family mapping
@@ -148,6 +149,17 @@ const technologyMap: Record<string, string> = {
   'kotlin': 'mobile',
   'ionic': 'mobile',
 
+  // AI / LLM
+  'ai': 'ai',
+  'a.i.': 'ai',
+  'intelligence artificielle': 'ai',
+  'llm': 'ai',
+  'machine learning': 'ai',
+  'genai': 'ai',
+  'mcp': 'ai',
+  'openai': 'ai',
+  'ollama': 'ai',
+
   // DevOps & Tools
   'docker': 'devops',
   'kubernetes': 'devops',
@@ -183,7 +195,8 @@ const dotColors: Record<string, string> = {
   tools: 'bg-slate-400',
   testing: 'bg-rose-300',
   mobile: 'bg-green-400',
-  devops: 'bg-slate-500'
+  devops: 'bg-slate-500',
+  ai: 'bg-fuchsia-400'
 };
 
 // Hex equivalents of dotColors for non-Tailwind consumers (PDF document)
@@ -207,7 +220,33 @@ const dotColorsHex: Record<string, string> = {
   tools: '#94a3b8',
   testing: '#fda4af',
   mobile: '#4ade80',
-  devops: '#64748b'
+  devops: '#64748b',
+  ai: '#e879f9'
+};
+
+// Tinted chip colors (bg-100 / text-700 shades) for non-Tailwind consumers (PDF document)
+const chipColorsHex: Record<string, { bg: string; text: string }> = {
+  dotnet: { bg: '#ede9fe', text: '#6d28d9' },
+  angular: { bg: '#ffe4e6', text: '#be123c' },
+  react: { bg: '#e0f2fe', text: '#0369a1' },
+  typescript: { bg: '#dbeafe', text: '#1d4ed8' },
+  python: { bg: '#fef3c7', text: '#b45309' },
+  java: { bg: '#ffedd5', text: '#c2410c' },
+  javascript: { bg: '#fef9c3', text: '#a16207' },
+  css: { bg: '#e0f2fe', text: '#0369a1' },
+  html: { bg: '#ffedd5', text: '#c2410c' },
+  vue: { bg: '#d1fae5', text: '#047857' },
+  svelte: { bg: '#ffedd5', text: '#c2410c' },
+  tailwind: { bg: '#ccfbf1', text: '#0f766e' },
+  bootstrap: { bg: '#ede9fe', text: '#6d28d9' },
+  sass: { bg: '#fce7f3', text: '#be185d' },
+  database: { bg: '#e0e7ff', text: '#4338ca' },
+  cloud: { bg: '#cffafe', text: '#0e7490' },
+  tools: { bg: '#f1f5f9', text: '#475569' },
+  testing: { bg: '#ffe4e6', text: '#be123c' },
+  mobile: { bg: '#dcfce7', text: '#15803d' },
+  devops: { bg: '#e2e8f0', text: '#334155' },
+  ai: { bg: '#fae8ff', text: '#a21caf' }
 };
 
 const resolveFamily = (techName: string): string => {
@@ -235,6 +274,13 @@ export const getTechnologyDotColor = (techName: string): string => {
  */
 export const getTechnologyDotHex = (techName: string): string => {
   return dotColorsHex[resolveFamily(techName)] || dotColorsHex.tools;
+};
+
+/**
+ * Get tinted chip colors (background + text) as hex values (for the PDF document)
+ */
+export const getTechnologyChipHex = (techName: string): { bg: string; text: string } => {
+  return chipColorsHex[resolveFamily(techName)] || chipColorsHex.tools;
 };
 
 /**

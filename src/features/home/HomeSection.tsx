@@ -36,10 +36,44 @@ const HomeSection: React.FC = () => {
       label: isFr ? 'missions réalisées' : 'missions completed'
     },
     {
-      value: `${projetsInternes.length}`,
-      label: isFr ? 'projets personnels' : 'personal projects'
+      // Only company-related internal projects (exclude personal/hobby ones)
+      value: `${projetsInternes.filter((p) => !p.personal).length}`,
+      label: isFr ? 'projets internes' : 'internal projects'
     }
   ];
+
+  // Hover tooltips for the tech chips — years of experience sourced from the
+  // skills/competences descriptions (career start 2014).
+  const techMeta: Record<string, { fr: string; en: string }> = {
+    '.NET': {
+      fr: '10+ ans • C#, .NET 8 & Entity Framework Core (migrations, LINQ optimisé)',
+      en: '10+ yrs • C#, .NET 8 & Entity Framework Core (migrations, optimized LINQ)',
+    },
+    AI: {
+      fr: '~2 ans • LLM, agents IA, MCP & protocole OpenAI (Claude Code, Ollama)',
+      en: '~2 yrs • LLMs, AI agents, MCP & OpenAI protocol (Claude Code, Ollama)',
+    },
+    Angular: {
+      fr: '4 ans • Angular & RxJS sur projets clients',
+      en: '4 yrs • Angular & RxJS on client projects',
+    },
+    React: {
+      fr: '2 ans • SPA modernes en poste actuel',
+      en: '2 yrs • modern SPAs in current role',
+    },
+    TypeScript: {
+      fr: '4 ans • front Angular & React typés',
+      en: '4 yrs • typed Angular & React front-ends',
+    },
+    Python: {
+      fr: '2 ans • API, IA, MCP & protocole OpenAI',
+      en: '2 yrs • APIs, AI, MCP & OpenAI protocol',
+    },
+    Flutter: {
+      fr: '2 ans • apps mobiles (projets internes)',
+      en: '2 yrs • mobile apps (internal projects)',
+    },
+  };
 
   const heroPitch = isFr
     ? "Développeur .NET Full Stack spécialisé Angular, React, Python et Flutter. J'allie expertise technique et esprit d'innovation pour concevoir des applications robustes, du client lourd au web moderne."
@@ -67,6 +101,8 @@ const HomeSection: React.FC = () => {
   ];
 
   const passionIcons = {
+    'Projets internes': '🛠️',
+    'Internal projects': '🛠️',
     'Sport': '🏃‍♂️',
     'Sports': '🏃‍♂️',
     'Méditation': '🧘‍♂️',
@@ -191,8 +227,12 @@ const HomeSection: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                {['.NET', 'Angular', 'React', 'TypeScript', 'Python', 'Flutter'].map((tech) => (
-                  <TechChip key={tech} technology={tech} />
+                {['.NET', 'AI', 'Angular', 'React', 'TypeScript', 'Python', 'Flutter'].map((tech) => (
+                  <TechChip
+                    key={tech}
+                    technology={tech}
+                    tooltip={techMeta[tech] ? (isFr ? techMeta[tech].fr : techMeta[tech].en) : undefined}
+                  />
                 ))}
               </motion.div>
             </div>

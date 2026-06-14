@@ -9,7 +9,7 @@
     "profileImage": "/images/profile.jpg",
     "description": ".Net Fullstack Developer specialized in Angular, React, Python and Flutter, I am passionate about technological innovation and continuous improvement of my skills. Curious and creative, I strive to explore cutting-edge technologies to design and develop innovative solutions. Always open to new ideas and fields that captivate me, I seek to combine technical expertise and innovation spirit to take on new challenges.",
     "passions": [
-      "Sports",
+      "Internal projects",
       "Meditation",
       "Reading",
       "Music",
@@ -59,7 +59,24 @@
       ],
       "conditionDeFinDeMission": "Ongoing mission",
       "equipe": "International team with developers worldwide",
-      "logo1": "/images/experiences/DELOITTE.png"
+      "logo1": "/images/experiences/DELOITTE.png",
+      "atouts": [
+        {
+          "icon": "english",
+          "label": "English-speaking environment",
+          "description": "English-speaking environment: meetings and documentation in English"
+        },
+        {
+          "icon": "ai",
+          "label": "AI integration",
+          "description": "AI features (MCP, LLM) integrated into translation tools"
+        },
+        {
+          "icon": "newtech",
+          "label": "Cutting-edge technologies",
+          "description": "Recent tech stack and modern practices"
+        }
+      ]
     },
     {
       "id": 7,
@@ -98,7 +115,19 @@
       ],
       "conditionDeFinDeMission": "Deloitte France put the project on standby due to US teams creating a new tool",
       "equipe": "France side: 1 PM + 2 devs (then just 1 dev), Luxembourg side: 1 PM + 3 devs",
-      "logo1": "/images/experiences/DELOITTE.png"
+      "logo1": "/images/experiences/DELOITTE.png",
+      "atouts": [
+        {
+          "icon": "english",
+          "label": "English-speaking environment",
+          "description": "English-speaking environment: teams in France and Luxembourg"
+        },
+        {
+          "icon": "newtech",
+          "label": "Cutting-edge technologies",
+          "description": "Recent tech stack and modern practices (DDD, CQRS)"
+        }
+      ]
     },
     {
       "id": 6,
@@ -137,7 +166,14 @@
       "conditionDeFinDeMission": "Planned end of mission",
       "equipe": "1 PO, 3 developers including 1 junior and 1 lead dev",
       "logo1": "/images/experiences/CIBTP.png",
-      "logo2": "/images/experiences/ACII.png"
+      "logo2": "/images/experiences/ACII.png",
+      "atouts": [
+        {
+          "icon": "fullapp",
+          "label": "End-to-end delivery",
+          "description": "Complete rebuild: application designed and developed end to end"
+        }
+      ]
     },
     {
       "id": 5,
@@ -180,7 +216,14 @@
       "conditionDeFinDeMission": "Planned end of mission",
       "equipe": "1 Front lead tech, 1 Back lead tech, 1 fullstack developer (me), 1 PO",
       "logo1": "/images/experiences/fonciereLogement.png",
-      "logo2": "/images/experiences/keyConsulting.png"
+      "logo2": "/images/experiences/keyConsulting.png",
+      "atouts": [
+        {
+          "icon": "newtech",
+          "label": "Cutting-edge technologies",
+          "description": "Recent tech stack and modern practices"
+        }
+      ]
     },
     {
       "id": 4,
@@ -218,7 +261,19 @@
       "conditionDeFinDeMission": "During Covid crisis, oil barrel prices dropped, Sercel decided to let go some contractors",
       "equipe": "1 PM, 1 senior developer, 1 confirmed developer (me)",
       "logo1": "/images/experiences/sercel.png",
-      "logo2": "/images/experiences/elephant.png"
+      "logo2": "/images/experiences/elephant.png",
+      "atouts": [
+        {
+          "icon": "industry",
+          "label": "Industrial sector",
+          "description": "Working closely with the mechanical and electronics teams"
+        },
+        {
+          "icon": "critical",
+          "label": "Mission-critical application",
+          "description": "Huge financial impact in case of a bug: drives seismic acquisition hardware"
+        }
+      ]
     },
     {
       "id": 3,
@@ -382,6 +437,13 @@
           "description": "10 years experience, in almost every professional experience"
         },
         {
+          "label": "Entity Framework",
+          "backgroundColor": "#512BD4",
+          "data": 3,
+          "level": "advanced",
+          "description": "Advanced mastery of the .NET ORM: EF Core, migrations, optimized LINQ queries"
+        },
+        {
           "label": "TypeScript",
           "backgroundColor": "#3178C6",
           "data": 2,
@@ -433,7 +495,7 @@
           "label": "Docker",
           "backgroundColor": "#2496ED",
           "data": 2,
-          "level": "junior",
+          "level": "intermediate",
           "description": "Containerization"
         },
         {
@@ -445,17 +507,38 @@
         },
         {
           "label": "Claude Code",
-          "backgroundColor": "#B87333",
-          "data": 2,
-          "level": "intermediate",
-          "description": "AI assistant for development"
+          "backgroundColor": "#D97757",
+          "data": 3,
+          "level": "advanced",
+          "description": "Daily AI-agent-assisted development"
+        },
+        {
+          "label": "Ollama",
+          "backgroundColor": "#222222",
+          "data": 3,
+          "level": "advanced",
+          "description": "Self-hosted local LLM serving and integration"
         },
         {
           "label": "Cursor",
-          "backgroundColor": "#5A67D8",
+          "backgroundColor": "#3B82F6",
+          "data": 3,
+          "level": "advanced",
+          "description": "AI-powered code editor"
+        },
+        {
+          "label": "Windsurf",
+          "backgroundColor": "#0EA5E9",
           "data": 2,
           "level": "intermediate",
-          "description": "IDE with AI assistance"
+          "description": "AI-powered code editor"
+        },
+        {
+          "label": "MCP & Skills",
+          "backgroundColor": "#8B5CF6",
+          "data": 3,
+          "level": "advanced",
+          "description": "Building MCP servers and skills for AI agents"
         }
       ]
     }
@@ -1128,7 +1211,8 @@
       ],
       "outils": [],
       "updates": [],
-      "images": []
+      "images": [],
+      "personal": true
     },
     {
       "id": 4,
@@ -1214,7 +1298,8 @@
         "LED lighting"
       ],
       "updates": [],
-      "images": []
+      "images": [],
+      "personal": true
     },
     {
       "id": 14,
@@ -1234,7 +1319,8 @@
       ],
       "outils": [],
       "updates": [],
-      "images": []
+      "images": [],
+      "personal": true
     },
     {
       "id": 13,
@@ -1260,7 +1346,8 @@
           "url": "/images/projects/tv_stand.jpg",
           "type": "photo"
         }
-      ]
+      ],
+      "personal": true
     }
   ],
   "recommendations": [

@@ -9,7 +9,7 @@
     "profileImage": "/images/profile.jpg",
     "description": "Développeur .Net Fullstack spécialisé en Angular, React, Python et Flutter, je suis passionné par l'innovation technologique et l'amélioration continue de mes compétences. Curieux et créatif, je m'efforce d'explorer de nouvelles technologies à la pointe du progrès pour concevoir et développer des solutions novatrices. Toujours ouvert aux nouvelles idées et domaines qui me captivent, je cherche à allier expertise technique et esprit d'innovation pour relever de nouveaux défis.",
     "passions": [
-      "Sport",
+      "Projets internes",
       "Méditation",
       "Lecture",
       "Musique",
@@ -59,7 +59,24 @@
       ],
       "conditionDeFinDeMission": "Mission en cours",
       "equipe": "Équipe internationale avec des développeurs du monde entier",
-      "logo1": "/images/experiences/DELOITTE.png"
+      "logo1": "/images/experiences/DELOITTE.png",
+      "atouts": [
+        {
+          "icon": "english",
+          "label": "Environnement anglophone",
+          "description": "Mission en environnement anglophone : réunions et documentation en anglais"
+        },
+        {
+          "icon": "ai",
+          "label": "Intégration IA",
+          "description": "Intégration de fonctionnalités IA (MCP, LLM) dans les outils de traduction"
+        },
+        {
+          "icon": "newtech",
+          "label": "Technologies de pointe",
+          "description": "Stack technique récente et pratiques modernes"
+        }
+      ]
     },
     {
       "id": 7,
@@ -98,7 +115,19 @@
       ],
       "conditionDeFinDeMission": "Deloitte France a mis le projet en standby suite à la création d'un nouvel outil par les équipes US",
       "equipe": "Côté France : 1 PM + 2 devs (puis 1 seul dev), côté Luxembourg : 1 PM + 3 devs",
-      "logo1": "/images/experiences/DELOITTE.png"
+      "logo1": "/images/experiences/DELOITTE.png",
+      "atouts": [
+        {
+          "icon": "english",
+          "label": "Environnement anglophone",
+          "description": "Mission en environnement anglophone : équipes France et Luxembourg"
+        },
+        {
+          "icon": "newtech",
+          "label": "Technologies de pointe",
+          "description": "Stack technique récente et pratiques modernes (DDD, CQRS)"
+        }
+      ]
     },
     {
       "id": 6,
@@ -137,7 +166,14 @@
       "conditionDeFinDeMission": "Fin de mission prévue",
       "equipe": "1 PO, 3 développeurs dont 1 junior et 1 lead dev",
       "logo1": "/images/experiences/CIBTP.png",
-      "logo2": "/images/experiences/ACII.png"
+      "logo2": "/images/experiences/ACII.png",
+      "atouts": [
+        {
+          "icon": "fullapp",
+          "label": "Développement de bout en bout",
+          "description": "Refonte complète : conception et développement de l'application de bout en bout"
+        }
+      ]
     },
     {
       "id": 5,
@@ -180,7 +216,14 @@
       "conditionDeFinDeMission": "Fin de mission prévue",
       "equipe": "1 Front lead tech, 1 Back lead tech, 1 développeur fullstack (moi), 1 PO",
       "logo1": "/images/experiences/fonciereLogement.png",
-      "logo2": "/images/experiences/keyConsulting.png"
+      "logo2": "/images/experiences/keyConsulting.png",
+      "atouts": [
+        {
+          "icon": "newtech",
+          "label": "Technologies de pointe",
+          "description": "Stack technique récente et pratiques modernes"
+        }
+      ]
     },
     {
       "id": 4,
@@ -218,7 +261,19 @@
       "conditionDeFinDeMission": "Pendant la crise Covid, les prix du baril de pétrole ont chuté, Sercel a décidé de se séparer de certains prestataires",
       "equipe": "1 PM, 1 développeur senior, 1 développeur confirmé (moi)",
       "logo1": "/images/experiences/sercel.png",
-      "logo2": "/images/experiences/elephant.png"
+      "logo2": "/images/experiences/elephant.png",
+      "atouts": [
+        {
+          "icon": "industry",
+          "label": "Secteur industriel",
+          "description": "Travail en lien direct avec les équipes mécanique et électronique"
+        },
+        {
+          "icon": "critical",
+          "label": "Application critique",
+          "description": "Fort impact financier en cas de bug : pilotage de matériel d'acquisition sismique"
+        }
+      ]
     },
     {
       "id": 3,
@@ -382,6 +437,13 @@
           "description": "10 ans d'expériences, dans pratiquement chaque expérience professionelle"
         },
         {
+          "label": "Entity Framework",
+          "backgroundColor": "#512BD4",
+          "data": 3,
+          "level": "advanced",
+          "description": "Maîtrise avancée de l'ORM .NET : EF Core, migrations, requêtes LINQ optimisées"
+        },
+        {
           "label": "TypeScript",
           "backgroundColor": "#3178C6",
           "data": 2,
@@ -445,17 +507,38 @@
         },
         {
           "label": "Claude Code",
-          "backgroundColor": "#B87333",
-          "data": 2,
-          "level": "intermediate",
-          "description": "Assistant IA pour le développement"
+          "backgroundColor": "#D97757",
+          "data": 3,
+          "level": "advanced",
+          "description": "Développement assisté par agents IA au quotidien"
+        },
+        {
+          "label": "Ollama",
+          "backgroundColor": "#222222",
+          "data": 3,
+          "level": "advanced",
+          "description": "Hébergement et intégration de LLM locaux"
         },
         {
           "label": "Cursor",
-          "backgroundColor": "#5A67D8",
+          "backgroundColor": "#3B82F6",
+          "data": 3,
+          "level": "advanced",
+          "description": "Éditeur IA pour le développement"
+        },
+        {
+          "label": "Windsurf",
+          "backgroundColor": "#0EA5E9",
           "data": 2,
           "level": "intermediate",
-          "description": "IDE avec assistance IA"
+          "description": "Éditeur IA pour le développement"
+        },
+        {
+          "label": "MCP & Skills",
+          "backgroundColor": "#8B5CF6",
+          "data": 3,
+          "level": "advanced",
+          "description": "Création de serveurs MCP et de skills pour agents IA"
         }
       ]
     }
@@ -1128,7 +1211,8 @@
       ],
       "outils": [],
       "updates": [],
-      "images": []
+      "images": [],
+      "personal": true
     },
     {
       "id": 4,
@@ -1214,7 +1298,8 @@
         "Éclairage LED"
       ],
       "updates": [],
-      "images": []
+      "images": [],
+      "personal": true
     },
     {
       "id": 14,
@@ -1234,7 +1319,8 @@
       ],
       "outils": [],
       "updates": [],
-      "images": []
+      "images": [],
+      "personal": true
     },
     {
       "id": 13,
@@ -1260,7 +1346,8 @@
           "url": "/images/projects/tv_stand.jpg",
           "type": "photo"
         }
-      ]
+      ],
+      "personal": true
     }
   ],
   "recommendations": [

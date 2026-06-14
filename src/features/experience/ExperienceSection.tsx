@@ -1,11 +1,38 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, MapPin, Users, ChevronDown, ChevronUp, Building2, Clock } from 'lucide-react';
+import { Calendar, MapPin, Users, ChevronDown, ChevronUp, Building2, Clock, Languages, Sparkles, Rocket, Layers, Factory, ShieldAlert } from 'lucide-react';
 import useAppStore from '../../store/useAppStore';
 import { useTranslation } from '../../shared/hooks/useTranslation';
 import { sortTechnologiesByPriority } from '../../shared/utils/technologyColors';
 import TechChip from '../../shared/components/TechChip';
-import type { Experience } from '../../store/types';
+import type { Experience, ExperienceAtout } from '../../store/types';
+
+// Mission highlights ("atouts") — icon per kind, shown as badges with a tooltip
+const ATOUT_ICONS: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+  english: Languages,
+  ai: Sparkles,
+  newtech: Rocket,
+  fullapp: Layers,
+  industry: Factory,
+  critical: ShieldAlert,
+};
+
+const AtoutBadge: React.FC<{ atout: ExperienceAtout }> = ({ atout }) => {
+  const Icon = ATOUT_ICONS[atout.icon] || Sparkles;
+  return (
+    <span className="group/atout relative inline-flex items-center gap-1.5 bg-amber-50 text-amber-800 border border-amber-200 text-xs font-semibold px-2.5 py-1 rounded-full cursor-help">
+      <Icon size={13} className="text-amber-600" />
+      {atout.label}
+      <span
+        role="tooltip"
+        className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-max max-w-[260px] rounded-lg bg-neutral-900 text-white text-xs font-normal px-3 py-2 opacity-0 group-hover/atout:opacity-100 transition-opacity duration-150 z-20 shadow-lg print-hidden"
+      >
+        {atout.description}
+        <span className="absolute left-1/2 -translate-x-1/2 top-full border-4 border-transparent border-t-neutral-900"></span>
+      </span>
+    </span>
+  );
+};
 
 // Number of most recent experiences shown fully expanded; older ones are condensed
 const DETAILED_COUNT = 3;
@@ -102,11 +129,18 @@ const ExperienceSection: React.FC = () => {
                   </button>
                 )}
               </div>
-              {experience.missionEnCours && (
-                <span className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold px-3 py-1 rounded-full mt-2">
-                  <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
-                  {isFr ? 'Mission en cours' : 'Current mission'}
-                </span>
+              {(experience.missionEnCours || (experience.atouts?.length ?? 0) > 0) && (
+                <div className="flex flex-wrap items-center gap-2 mt-2">
+                  {experience.missionEnCours && (
+                    <span className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold px-3 py-1 rounded-full">
+                      <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
+                      {isFr ? 'Mission en cours' : 'Current mission'}
+                    </span>
+                  )}
+                  {experience.atouts?.map((atout, idx) => (
+                    <AtoutBadge key={idx} atout={atout} />
+                  ))}
+                </div>
               )}
             </div>
           </div>
@@ -293,6 +327,13 @@ const ExperienceSection: React.FC = () => {
         <p className="font-semibold text-neutral-900 truncate">{experience.nomDeMission}</p>
         <p className="text-sm text-neutral-500 truncate">{experience.context}</p>
       </div>
+      {(experience.atouts?.length ?? 0) > 0 && (
+        <div className="hidden md:flex flex-wrap gap-1.5 flex-shrink-0">
+          {experience.atouts?.map((atout, idx) => (
+            <AtoutBadge key={idx} atout={atout} />
+          ))}
+        </div>
+      )}
       <div className="text-right flex-shrink-0 hidden sm:block">
         <p className="text-sm font-medium text-neutral-600">
           {experience.dateDebut} – {experience.dateFin || (isFr ? 'Présent' : 'Present')}

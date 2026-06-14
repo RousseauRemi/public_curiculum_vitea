@@ -29,8 +29,8 @@
     "advanced": "Avancé"
   },
   "projects": {
-    "title": "Projets personnels",
-    "subtitle": "Ce que je construis sur mon temps libre : du code, de l'électronique, du bois et du jardin",
+    "title": "Projets internes & personnels",
+    "subtitle": "Les projets de ma propre entreprise et quelques projets perso : du code, de l'électronique, du bois et du jardin",
     "description": "Description",
     "technologies": "Technologies",
     "images": "Images",
@@ -57,7 +57,13 @@
     },
     "tools": "Outils",
     "duration": "Durée",
-    "status": "Statut"
+    "status": "Statut",
+    "filterByOwner": "Filtrer par type",
+    "owner": {
+      "all": "Tous",
+      "company": "Entreprise",
+      "personal": "Perso"
+    }
   },
   "experience": {
     "current": "Actuel",
