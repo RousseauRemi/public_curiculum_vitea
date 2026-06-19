@@ -2,6 +2,51 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Self-hosted fonts (same files used by the PDF export) — replaces the
+   external Google Fonts link so the strict CSP needs no third-party origins. */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/inter-latin-400-normal.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/inter-latin-400-italic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/inter-latin-600-normal.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/inter-latin-700-normal.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Sora';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/sora-latin-600-normal.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Sora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/sora-latin-700-normal.ttf') format('truetype');
+}
+
 /* Register the design-system palette with Tailwind v4 so utilities like
    bg-primary-600 / from-primary-500 / border-secondary-200 are generated.
    (The legacy tailwind.config.js is no longer read by Tailwind 4.) */
