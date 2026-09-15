@@ -73,6 +73,10 @@ export interface SubProject {
   tools: string[];
   updates: ProjectUpdate[];
   images?: (string | ProjectImage)[];
+  /** One-sentence version of `description`, for the professional PDF */
+  summary?: string;
+  /** Shown in the professional PDF on its own, like a project (see ProjetInterne.showInProfessionalCV) */
+  showInProfessionalCV?: boolean;
 }
 
 export interface ProjetInterne {
@@ -85,6 +89,13 @@ export interface ProjetInterne {
   sortDate?: string;
   /** True for personal/hobby projects (vs internal company projects) */
   personal?: boolean;
+  /** With `personal: true`, marks a project that is both personal and a company project.
+   *  Use isPersonalProject / isCompanyProject (projectUtils) rather than reading the flags. */
+  company?: boolean;
+  /** One-sentence version of `description`, for the professional PDF */
+  summary?: string;
+  /** Company project shown (in short form) in the professional PDF, which only names the other internal projects */
+  showInProfessionalCV?: boolean;
   expandable?: boolean;
   subProjects?: SubProject[];
   category?: ProjectCategory;
@@ -109,13 +120,14 @@ export interface Recommendation {
   liens: string;
   recommendation: string;
   translated?: string;
+  /** Language of `recommendation` (the original text), so the PDF can tell a translation apart */
+  recommendationLanguage?: 'fr' | 'en';
   logo1: string;
 }
 
 export interface PersonalInfo {
   nom: string;
   prenom: string;
-  age: number;
   localisation: string;
   telephone?: string;
   email: string;
@@ -176,10 +188,17 @@ export interface AppState {
   isHydrated: boolean;
 }
 
+export interface SkillGroup {
+  title: string;
+  items: string[];
+}
+
 export interface CVData {
   personalInfo: PersonalInfo;
   experiences: Experience[];
   competenceCategories: CompetenceCategory[];
+  /** Skills grouped by area, shown as keyword lists in the PDF */
+  skillGroups?: SkillGroup[];
   formations: Formation[];
   projetsInternes: ProjetInterne[];
   recommendations: Recommendation[];

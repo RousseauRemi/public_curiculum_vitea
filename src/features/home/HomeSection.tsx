@@ -7,6 +7,7 @@ import useAppStore from '../../store/useAppStore';
 import { useTranslation } from '../../shared/hooks/useTranslation';
 import { usePDFGeneration } from '../../shared/hooks/usePDFGeneration';
 import { SkeletonHomeName } from '../../shared/components/SkeletonLoader';
+import { isCompanyProject } from '../../shared/utils/projectUtils';
 
 const CAREER_START_YEAR = 2014;
 
@@ -37,7 +38,7 @@ const HomeSection: React.FC = () => {
     },
     {
       // Only company-related internal projects (exclude personal/hobby ones)
-      value: `${projetsInternes.filter((p) => !p.personal).length}`,
+      value: `${projetsInternes.filter(isCompanyProject).length}`,
       label: isFr ? 'projets internes' : 'internal projects'
     }
   ];
@@ -76,8 +77,8 @@ const HomeSection: React.FC = () => {
   };
 
   const heroPitch = isFr
-    ? "Développeur .NET Full Stack spécialisé Angular, React, Python et Flutter. J'allie expertise technique et esprit d'innovation pour concevoir des applications robustes, du client lourd au web moderne."
-    : 'Full Stack .NET developer specialized in Angular, React, Python and Flutter. I combine technical expertise and innovation to build robust applications, from desktop clients to modern web.';
+    ? "C# / .NET 8-9 structuré en DDD, CQRS et Clean Architecture, fronts Angular et React, mobile Flutter. Des applications métier robustes, pensées pour durer et menées jusqu'en production."
+    : 'C# / .NET 8-9 built on DDD, CQRS and Clean Architecture, Angular and React front ends, Flutter mobile. Robust business applications, designed to last and taken all the way to production.';
 
   const contactItems = [
     {
@@ -164,7 +165,7 @@ const HomeSection: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                {isFr ? 'Développeur Full Stack' : 'Full Stack Developer'}
+                {isFr ? 'Développeur .NET Fullstack' : 'Full-Stack .NET Developer'}
               </motion.h2>
 
               <motion.p

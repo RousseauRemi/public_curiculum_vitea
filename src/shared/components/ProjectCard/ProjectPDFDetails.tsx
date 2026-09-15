@@ -1,5 +1,6 @@
 import React from 'react';
 import type { ProjetInterne } from '../../../store/types';
+import useAppStore from '../../../store/useAppStore';
 import { getTechnologyColor } from '../../utils/technologyColors';
 import { OptimizedImage } from '../OptimizedImage';
 
@@ -8,6 +9,7 @@ interface ProjectPDFDetailsProps {
 }
 
 export const ProjectPDFDetails: React.FC<ProjectPDFDetailsProps> = ({ project }) => {
+  const language = useAppStore((state) => state.language);
   if (!project.subProjects || project.subProjects.length === 0) return null;
 
   return (
@@ -19,7 +21,7 @@ export const ProjectPDFDetails: React.FC<ProjectPDFDetailsProps> = ({ project })
       
       <div className="mb-4">
         <h4 className="font-semibold text-sm text-neutral-800 mb-2">
-          🔧 Sous-projets ({project.subProjects.length})
+          🔧 {language === 'fr' ? 'Sous-projets' : 'Sub-projects'} ({project.subProjects.length})
         </h4>
         <div className="space-y-2">
           {project.subProjects.slice(0, 3).map((subProject, idx) => (

@@ -8,6 +8,15 @@ import cvDataEn from '../data/cv-data-en.json';
 
 type Theme = 'light' | 'dark';
 
+/** The URL is the source of truth for the language: English at /, French under /fr/.
+ *  Each language has its own prerendered page (scripts/prerender.mjs), so a shared link or a
+ *  crawler always gets the language in the address, whatever an earlier visit stored. */
+export const languageFromPath = (pathname: string): Language =>
+  /^\/fr(\/|$)/.test(pathname) ? Language.FR : Language.EN;
+
+export const pathForLanguage = (language: Language): string =>
+  language === Language.FR ? '/fr/' : '/';
+
 interface AppStore extends AppState {
   // Actions
   setLanguage: (language: Language) => void;
@@ -31,7 +40,7 @@ const useAppStore = create<AppStore>()(
   persist(
     (set, get) => ({
       // Initial state
-      language: Language.FR,
+      language: typeof window !== 'undefined' ? languageFromPath(window.location.pathname) : Language.EN,
       isLoading: false,
       activeSection: 'home',
       isMobileMenuOpen: false,
@@ -72,9 +81,14 @@ const useAppStore = create<AppStore>()(
     }),
     {
       name: 'cv-app-storage',
+      // Only the theme is remembered; the language comes from the URL. The custom merge also
+      // ignores the `language` older versions stored, which would otherwise override the URL.
       partialize: (state) => ({
-        language: state.language,
         theme: state.theme,
+      }),
+      merge: (persisted, current) => ({
+        ...current,
+        theme: (persisted as Partial<AppStore> | undefined)?.theme ?? current.theme,
       }),
       onRehydrateStorage: () => (state) => {
         if (state) {

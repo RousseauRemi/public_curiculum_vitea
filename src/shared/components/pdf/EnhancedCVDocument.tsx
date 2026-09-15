@@ -1,6 +1,20 @@
 import { Document, Page, Text, View, StyleSheet, Image, Link, Font } from '@react-pdf/renderer';
-import type { CVData, ProjetInterne } from '../../../store/types';
-import { getTechnologyDotHex, getTechnologyChipHex } from '../../utils/technologyColors';
+import type { CVData, ProjetInterne, Recommendation } from '../../../store/types';
+import { getTechnologyChipHex } from '../../utils/technologyColors';
+import { isCompanyProject, isPersonalProject } from '../../utils/projectUtils';
+
+/** `full`: the whole CV, every project in detail. `professional`: only the projects and sub-projects
+ *  flagged `showInProfessionalCV`, in short form, the other internal projects named with a pointer to the website. */
+export type CVVariant = 'full' | 'professional';
+
+/** A project or sub-project as shown (in short form) in the professional PDF */
+interface ProfessionalEntry {
+  key: string;
+  title: string;
+  dates: string;
+  summary: string;
+  technologies: string[];
+}
 
 // Same fonts as the website (index.css): Inter for body, Sora for display
 const fontBase = `${window.location.origin}/fonts`;
@@ -35,13 +49,12 @@ const C = {
   accentLight: '#2dd4bf',
   accentDark: '#0d9488',
   border: '#e2e8f0',
-  track: '#e8edf4',
   soft: '#f8fafc',
   heroInk: '#f8fafc',
   heroMuted: '#cbd5e1',
 };
 
-const HERO_HEIGHT = 168;
+const HERO_HEIGHT = 156;
 
 const s = StyleSheet.create({
   page: {
@@ -88,7 +101,7 @@ const s = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     height: HERO_HEIGHT - 36 - 18,
-    marginBottom: 44,
+    marginBottom: 30,
   },
   name: {
     fontFamily: 'Sora',
@@ -117,7 +130,7 @@ const s = StyleSheet.create({
   },
   // Sections
   section: {
-    marginBottom: 18,
+    marginBottom: 15,
   },
   eyebrow: {
     fontSize: 7,
@@ -140,11 +153,11 @@ const s = StyleSheet.create({
     backgroundColor: C.accent,
     borderRadius: 2,
     marginTop: 5,
-    marginBottom: 12,
+    marginBottom: 10,
   },
   paragraph: {
     fontSize: 9,
-    lineHeight: 1.55,
+    lineHeight: 1.5,
     color: C.body,
   },
   // Timeline (experiences)
@@ -154,7 +167,7 @@ const s = StyleSheet.create({
     paddingLeft: 16,
   },
   timelineEntry: {
-    marginBottom: 14,
+    marginBottom: 12,
   },
   timelineDot: {
     position: 'absolute',
@@ -187,7 +200,7 @@ const s = StyleSheet.create({
   },
   bullet: {
     fontSize: 8.5,
-    lineHeight: 1.45,
+    lineHeight: 1.4,
     color: C.body,
   },
   bulletRow: {
@@ -210,10 +223,10 @@ const s = StyleSheet.create({
   },
   chip: {
     borderRadius: 10,
-    paddingVertical: 2.5,
+    paddingVertical: 2,
     paddingHorizontal: 7,
     marginRight: 4,
-    marginBottom: 4,
+    marginBottom: 3.5,
   },
   chipText: {
     fontSize: 7.5,
@@ -247,34 +260,19 @@ const s = StyleSheet.create({
     fontSize: 8,
     color: C.muted,
   },
-  // Skills
-  skillRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 7,
+  // Skills (keyword groups)
+  skillGroup: {
+    backgroundColor: C.soft,
+    borderRadius: 10,
+    paddingVertical: 9,
+    paddingHorizontal: 10,
+    width: '32.3%',
   },
-  skillLabel: {
-    flex: 1,
+  skillGroupTitle: {
+    fontWeight: 700,
     fontSize: 8.5,
-    color: C.body,
-    paddingRight: 6,
-  },
-  barTrack: {
-    width: 104,
-    height: 4,
-    borderRadius: 2,
-    backgroundColor: C.track,
-  },
-  barFill: {
-    height: 4,
-    borderRadius: 2,
-    backgroundColor: C.primary,
-  },
-  levelText: {
-    fontSize: 7,
-    color: C.faint,
-    width: 56,
-    textAlign: 'right',
+    color: C.ink,
+    marginBottom: 1,
   },
   // Recommendations
   quoteCard: {
@@ -300,10 +298,16 @@ const s = StyleSheet.create({
   },
   quoteText: {
     fontSize: 8.5,
-    lineHeight: 1.6,
+    lineHeight: 1.45,
     color: C.body,
     fontStyle: 'italic',
     marginTop: 8,
+  },
+  translationNote: {
+    fontSize: 7,
+    color: C.faint,
+    fontStyle: 'italic',
+    marginTop: 4,
   },
 });
 
@@ -315,15 +319,18 @@ const STATUS_COLORS: Record<string, string> = {
   archive: '#94a3b8',
 };
 
-const LEVEL_RATIO: Record<string, number> = {
-  advanced: 0.95,
-  intermediate: 0.65,
-  junior: 0.4,
-};
+const SITE_URL = 'remirousseau.pro';
+const SITE_HREF = `https://${SITE_URL}`;
 
-const SITE_URL = 'remi-rousseau-cv.netlify.app';
-
-export const EnhancedCVDocument = ({ data, language }: { data: CVData; language: string }) => {
+export const EnhancedCVDocument = ({
+  data,
+  language,
+  variant = 'full',
+}: {
+  data: CVData;
+  language: string;
+  variant?: CVVariant;
+}) => {
   const isEnglish = language === 'en';
   const t = (fr: string, en: string) => (isEnglish ? en : fr);
 
@@ -340,15 +347,27 @@ export const EnhancedCVDocument = ({ data, language }: { data: CVData; language:
     }
   };
 
-  // Recommendation text: pick the right language, then strip the HTML the web view renders
-  const getRecommendationText = (rec: { recommendation: string; translated?: string }): string => {
-    const raw = !isEnglish ? rec.translated || rec.recommendation : rec.recommendation;
-    return raw
-      .replace(/<br\s*\/?>/gi, '\n')
-      .replace(/<[^>]+>/g, '')
-      .replace(/\n{3,}/g, '\n\n')
-      .trim();
+  // Recommendations: the website shows the original with a translation on demand; the PDF has no
+  // toggle, so it shows the text in the document language and says when that text is a translation.
+  const getRecommendation = (rec: Recommendation): { text: string; translatedFrom: 'fr' | 'en' | null } => {
+    const docLanguage = isEnglish ? 'en' : 'fr';
+    const useTranslation = rec.recommendationLanguage
+      ? !!rec.translated && rec.recommendationLanguage !== docLanguage
+      : !isEnglish && !!rec.translated;
+    const raw = useTranslation && rec.translated ? rec.translated : rec.recommendation;
+    return {
+      text: raw
+        .replace(/<br\s*\/?>/gi, '\n')
+        .replace(/<[^>]+>/g, '')
+        // Blank lines between paragraphs cost a full line each in a narrow card
+        .replace(/\n{2,}/g, '\n')
+        .trim(),
+      translatedFrom: useTranslation ? rec.recommendationLanguage ?? null : null,
+    };
   };
+
+  const translationNote = (from: 'fr' | 'en'): string =>
+    from === 'fr' ? t('Traduit du français', 'Translated from French') : t('Traduit de l’anglais', 'Translated from English');
 
   const initials = (fullName: string): string =>
     fullName
@@ -374,19 +393,10 @@ export const EnhancedCVDocument = ({ data, language }: { data: CVData; language:
     return pair ? t(pair[0], pair[1]) : status;
   };
 
-  const levelLabel = (level: string): string => {
-    switch (level) {
-      case 'advanced': return t('Avancé', 'Advanced');
-      case 'intermediate': return t('Intermédiaire', 'Intermediate');
-      default: return 'Junior';
-    }
-  };
-
   // "Depuis 2024" instead of "2024 – en cours": the status pill already says it's ongoing
-  const projectDates = (project: ProjetInterne): string =>
-    project.endDate
-      ? `${project.startDate} – ${project.endDate}`
-      : t(`Depuis ${project.startDate?.toLowerCase()}`, `Since ${project.startDate}`);
+  const datesLabel = (start: string, end: string | null): string =>
+    end ? `${start} – ${end}` : t(`Depuis ${start?.toLowerCase()}`, `Since ${start}`);
+  const projectDates = (project: ProjetInterne): string => datesLabel(project.startDate, project.endDate);
 
   const Chip = ({ label, colors }: { label: string; colors?: { bg: string; text: string } }) => {
     const { bg, text } = colors || getTechnologyChipHex(label);
@@ -454,6 +464,33 @@ export const EnhancedCVDocument = ({ data, language }: { data: CVData; language:
     </View>
   );
 
+  // Company, personal, or both
+  const OwnerPills = ({ project, small }: { project: ProjetInterne; small?: boolean }) => (
+    <>
+      {isCompanyProject(project) && <OwnerPill small={small} />}
+      {isPersonalProject(project) && <OwnerPill personal small={small} />}
+    </>
+  );
+
+  const FeaturedProject = ({ project }: { project: ProjetInterne }) => (
+    <View style={s.card} wrap={false}>
+      <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
+        <View style={{ flex: 1 }}>
+          <Text style={s.cardTitle}>{project.name}</Text>
+          <Text style={[s.dates, { marginTop: 2 }]}>{projectDates(project)}</Text>
+        </View>
+        <OwnerPills project={project} />
+        <StatusBadge status={project.status || 'enCours'} />
+      </View>
+      <Text style={[s.paragraph, { fontSize: 8.5, marginTop: 5 }]}>{project.description}</Text>
+      <View style={s.chipsRow}>
+        {getAllTechnologies(project).slice(0, 9).map((tech, idx) => (
+          <Chip key={idx} label={tech} />
+        ))}
+      </View>
+    </View>
+  );
+
   const StatusBadge = ({ status, small }: { status: string; small?: boolean }) => (
     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
       <View
@@ -471,8 +508,46 @@ export const EnhancedCVDocument = ({ data, language }: { data: CVData; language:
 
   const detailedExperiences = data.experiences.slice(0, 3);
   const earlierExperiences = data.experiences.slice(3);
-  const featuredProjects = (data.projetsInternes || []).slice(0, 4);
-  const otherProjects = (data.projetsInternes || []).slice(4);
+  const projects = variant === 'full' ? data.projetsInternes || [] : [];
+  // Professional variant: the flagged projects and sub-projects in short form, the other internal
+  // projects only named ("EstimateImmo — Real Estate Estimation" → "EstimateImmo")
+  const shortName = (project: ProjetInterne): string => project.name.split(/ — | \(/)[0].trim();
+  const hasFlaggedSubProject = (project: ProjetInterne): boolean =>
+    !!project.subProjects?.some((sub) => sub.showInProfessionalCV);
+  const professionalEntries: ProfessionalEntry[] =
+    variant === 'professional'
+      ? (data.projetsInternes || []).flatMap((project) => [
+          ...(project.showInProfessionalCV
+            ? [{
+                key: `p-${project.id}`,
+                title: shortName(project),
+                dates: datesLabel(project.startDate, project.endDate),
+                summary: project.summary || project.description,
+                technologies: getAllTechnologies(project),
+              }]
+            : []),
+          ...(project.subProjects || [])
+            .filter((sub) => sub.showInProfessionalCV)
+            .map((sub) => ({
+              key: `s-${project.id}-${sub.id}`,
+              title: sub.name,
+              dates: datesLabel(sub.startDate, sub.endDate),
+              summary: sub.summary || sub.description,
+              technologies: sub.technologies || [],
+            })),
+        ])
+      : [];
+  // The other internal projects: just the name and a few technologies
+  const otherInternalProjects =
+    variant === 'professional'
+      ? (data.projetsInternes || [])
+          .filter(
+            (project) => isCompanyProject(project) && !project.showInProfessionalCV && !hasFlaggedSubProject(project)
+          )
+          .map((project) => ({ id: project.id, name: shortName(project), technologies: getAllTechnologies(project).slice(0, 3) }))
+      : [];
+  const featuredProjects = projects.slice(0, 4);
+  const otherProjects = projects.slice(4);
 
   return (
     <Document
@@ -502,7 +577,7 @@ export const EnhancedCVDocument = ({ data, language }: { data: CVData; language:
             <Text style={s.name}>
               {data.personalInfo.prenom} {data.personalInfo.nom}
             </Text>
-            <Text style={s.role}>{t('Développeur Fullstack', 'Fullstack Developer')}</Text>
+            <Text style={s.role}>{t('Développeur .NET Fullstack', 'Full-Stack .NET Developer')}</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
               <View style={{ width: 5, height: 5, borderRadius: 2.5, backgroundColor: '#4ade80', marginRight: 4 }} />
               <Text style={{ fontSize: 7.5, color: C.heroMuted }}>
@@ -514,7 +589,6 @@ export const EnhancedCVDocument = ({ data, language }: { data: CVData; language:
                 {data.personalInfo.email}
               </Link>
               {'   ·   '}{data.personalInfo.localisation}
-              {'   ·   '}{t(`${data.personalInfo.age} ans`, `${data.personalInfo.age} years old`)}
             </Text>
             <Text style={[s.heroLine, { marginTop: 3 }]}>
               <Link src={data.personalInfo.linkedin} style={{ color: C.primaryLight, textDecoration: 'none' }}>
@@ -609,51 +683,74 @@ export const EnhancedCVDocument = ({ data, language }: { data: CVData; language:
           </View>
         </View>
 
-        {/* ============ SKILLS ============ */}
-        <View style={s.section}>
-          <SectionHeader eyebrow={t('Savoir-faire', 'Know-how')} title={t('Compétences', 'Skills')} />
-          <View style={{ flexDirection: 'row', gap: 8 }}>
-            {data.competenceCategories.slice(0, 2).map((category, catIdx) => (
-              <View key={catIdx} style={[s.softCard, { flex: 1 }]} wrap={false}>
-                <Text style={[s.cardTitle, { marginBottom: 9 }]}>
-                  {[category.title1, category.title2].filter(Boolean).join(' ')}
-                </Text>
-                {category.competences.map((comp, idx) => (
-                  <View key={idx} style={s.skillRow}>
-                    <Text style={s.skillLabel}>{comp.label}</Text>
-                    <View style={s.barTrack}>
-                      <View
-                        style={[
-                          s.barFill,
-                          {
-                            width: 104 * (LEVEL_RATIO[comp.level] || 0.5),
-                            backgroundColor: getTechnologyDotHex(comp.label),
-                          },
-                        ]}
-                      />
-                    </View>
-                    <Text style={s.levelText}>{levelLabel(comp.level)}</Text>
+        {/* ============ COMPANY PROJECTS (professional variant, short form, right after the career) ============ */}
+        {professionalEntries.length > 0 && (
+          <View style={s.section} wrap={false}>
+            <SectionHeader eyebrow={t('Entreprise', 'Company')} title={t('Projets de l’entreprise', 'Company Projects')} />
+            <View style={{ flexDirection: 'row', gap: 6 }}>
+              {professionalEntries.map((entry) => (
+                <View key={entry.key} style={[s.softCard, { flex: 1, paddingVertical: 9, paddingHorizontal: 10 }]}>
+                  <Text style={[s.cardTitle, { fontSize: 9.5 }]}>{entry.title}</Text>
+                  <Text style={[s.dates, { fontSize: 7.5, marginTop: 1 }]}>{entry.dates}</Text>
+                  <Text style={[s.paragraph, { fontSize: 7.5, lineHeight: 1.4, marginTop: 4 }]}>{entry.summary}</Text>
+                  <View style={[s.chipsRow, { marginTop: 5 }]}>
+                    {entry.technologies.slice(0, 3).map((tech, idx) => (
+                      <Chip key={idx} label={tech} />
+                    ))}
                   </View>
-                ))}
+                </View>
+              ))}
+            </View>
+            {otherInternalProjects.length > 0 && (
+              <View style={{ marginTop: 8 }}>
+                <Text style={{ fontSize: 8, color: C.muted, marginBottom: 3 }}>
+                  <Text style={{ fontWeight: 700, color: C.ink }}>{t('Autres projets internes', 'Other internal projects')}</Text>
+                  {t(' · détails et captures sur ', ' · details and screenshots on ')}
+                  <Link src={isEnglish ? SITE_HREF : `${SITE_HREF}/fr/`} style={{ color: C.primary, textDecoration: 'none' }}>
+                    {SITE_URL}
+                  </Link>
+                </Text>
+                <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+                  {otherInternalProjects.map((project) => (
+                    <View key={project.id} style={{ width: '50%', paddingRight: 8, marginBottom: 1 }}>
+                      <Text style={{ fontSize: 7.5, lineHeight: 1.3, color: C.body }}>
+                        <Text style={{ fontWeight: 600, color: C.ink }}>{project.name}</Text>
+                        {project.technologies.length > 0 ? `  —  ${project.technologies.join(', ')}` : ''}
+                      </Text>
+                    </View>
+                  ))}
+                </View>
+              </View>
+            )}
+          </View>
+        )}
+
+        {/* ============ SKILLS ============ */}
+        {/* Unbreakable with its title, like Education: the title alone at a page bottom otherwise */}
+        <View style={s.section} wrap={false}>
+          <SectionHeader eyebrow={t('Savoir-faire', 'Know-how')} title={t('Compétences', 'Skills')} />
+          <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }} wrap={false}>
+            {(data.skillGroups?.length
+              ? data.skillGroups
+              : data.competenceCategories.map((category) => ({
+                  title: [category.title1, category.title2].filter(Boolean).join(' '),
+                  items: category.competences.map((comp) => comp.label),
+                }))
+            ).map((group, idx) => (
+              <View key={idx} style={s.skillGroup}>
+                <Text style={s.skillGroupTitle}>{group.title}</Text>
+                <View style={[s.chipsRow, { marginTop: 4 }]}>
+                  {group.items.map((item, itemIdx) => (
+                    <Chip key={itemIdx} label={item} />
+                  ))}
+                </View>
               </View>
             ))}
           </View>
-          {data.competenceCategories.slice(2).map((category, catIdx) => (
-            <View key={catIdx} style={[s.softCard, { marginTop: 8 }]} wrap={false}>
-              <Text style={[s.cardTitle, { marginBottom: 6 }]}>
-                {[category.title1, category.title2].filter(Boolean).join(' ')}
-              </Text>
-              <View style={s.chipsRow}>
-                {category.competences.map((comp, idx) => (
-                  <Chip key={idx} label={comp.label} />
-                ))}
-              </View>
-            </View>
-          ))}
         </View>
 
         {/* ============ EDUCATION ============ */}
-        <View style={s.section}>
+        <View style={s.section} wrap={false}>
           <SectionHeader eyebrow={t('Études', 'Studies')} title={t('Formation', 'Education')} />
           <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
             {data.formations.map((formation) => (
@@ -676,34 +773,23 @@ export const EnhancedCVDocument = ({ data, language }: { data: CVData; language:
         </View>
 
         {/* ============ PERSONAL PROJECTS ============ */}
-        {data.projetsInternes && data.projetsInternes.length > 0 && (
+        {projects.length > 0 && (
           <View style={s.section}>
-            <SectionHeader
-              eyebrow={t('Entreprise & perso', 'Company & personal')}
-              title={t('Projets internes & personnels', 'Internal & Personal Projects')}
-            />
+            {/* The title travels with the first card: on its own it could end up alone at the
+                bottom of a page (minPresenceAhead does not account for an unbreakable card) */}
+            <View wrap={false}>
+              <SectionHeader
+                eyebrow={t('Entreprise & perso', 'Company & personal')}
+                title={t('Projets internes & personnels', 'Internal & Personal Projects')}
+              />
+              {featuredProjects.slice(0, 1).map((project) => (
+                <FeaturedProject key={project.id} project={project} />
+              ))}
+            </View>
 
-            {featuredProjects.map((project) => {
-              const techs = getAllTechnologies(project);
-              return (
-                <View key={project.id} style={s.card} wrap={false}>
-                  <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
-                    <View style={{ flex: 1 }}>
-                      <Text style={s.cardTitle}>{project.name}</Text>
-                      <Text style={[s.dates, { marginTop: 2 }]}>{projectDates(project)}</Text>
-                    </View>
-                    <OwnerPill personal={project.personal} />
-                    <StatusBadge status={project.status || 'enCours'} />
-                  </View>
-                  <Text style={[s.paragraph, { fontSize: 8.5, marginTop: 5 }]}>{project.description}</Text>
-                  <View style={s.chipsRow}>
-                    {techs.slice(0, 9).map((tech, idx) => (
-                      <Chip key={idx} label={tech} />
-                    ))}
-                  </View>
-                </View>
-              );
-            })}
+            {featuredProjects.slice(1).map((project) => (
+              <FeaturedProject key={project.id} project={project} />
+            ))}
 
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
               {otherProjects.map((project) => {
@@ -713,7 +799,7 @@ export const EnhancedCVDocument = ({ data, language }: { data: CVData; language:
                     <Text style={[s.cardTitle, { fontSize: 9.5 }]}>{project.name}</Text>
                     <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 2 }}>
                       <Text style={[s.dates, { fontSize: 7.5, marginRight: 6 }]}>{projectDates(project)}</Text>
-                      <OwnerPill personal={project.personal} small />
+                      <OwnerPills project={project} small />
                       <StatusBadge status={project.status || 'enCours'} small />
                     </View>
                     <Text style={[s.paragraph, { fontSize: 7.5, lineHeight: 1.4, marginTop: 4 }]}>
@@ -734,32 +820,46 @@ export const EnhancedCVDocument = ({ data, language }: { data: CVData; language:
         )}
 
         {/* ============ RECOMMENDATIONS ============ */}
-        <View style={s.section}>
-          <SectionHeader
-            eyebrow={t('Ils m’ont fait confiance', 'They trusted me')}
-            title={t('Recommandations professionnelles', 'Professional Recommendations')}
-          />
-          {data.recommendations.map((rec) => (
-            <View key={rec.id} style={s.quoteCard} wrap={false}>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <View style={s.avatar}>
-                  <Text style={s.avatarText}>{initials(rec.nomPersonne)}</Text>
+        {/* Full CV: on their own page, since flowing after the project cards left the longest quote
+            alone on a last page. Professional CV: they follow the short project section. */}
+        <View style={s.section} break={variant === 'full'}>
+          {data.recommendations.map((rec, index) => {
+            const { text, translatedFrom } = getRecommendation(rec);
+            const card = (
+              <View key={rec.id} style={s.quoteCard} wrap={false}>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <View style={s.avatar}>
+                    <Text style={s.avatarText}>{initials(rec.nomPersonne)}</Text>
+                  </View>
+                  <View>
+                    <Text style={[s.cardTitle, { fontSize: 9.5 }]}>{rec.nomPersonne}</Text>
+                    <Text style={{ fontSize: 8, color: C.muted, marginTop: 1 }}>
+                      {rec.metier} · {rec.nomEntreprise}
+                    </Text>
+                  </View>
                 </View>
-                <View>
-                  <Text style={[s.cardTitle, { fontSize: 9.5 }]}>{rec.nomPersonne}</Text>
-                  <Text style={{ fontSize: 8, color: C.muted, marginTop: 1 }}>
-                    {rec.metier} · {rec.nomEntreprise}
-                  </Text>
-                </View>
+                <Text style={s.quoteText}>“{text}”</Text>
+                {translatedFrom && <Text style={s.translationNote}>{translationNote(translatedFrom)}</Text>}
+                {rec.liens && (
+                  <Link src={rec.liens} style={{ fontSize: 7.5, color: C.primary, textDecoration: 'none', marginTop: 4 }}>
+                    {rec.liens.replace('https://www.', '')}
+                  </Link>
+                )}
               </View>
-              <Text style={s.quoteText}>“{getRecommendationText(rec)}”</Text>
-              {rec.liens && (
-                <Link src={rec.liens} style={{ fontSize: 7.5, color: C.primary, textDecoration: 'none', marginTop: 4 }}>
-                  {rec.liens.replace('https://www.', '')}
-                </Link>
-              )}
-            </View>
-          ))}
+            );
+            // The title travels with the first recommendation so it never sits alone at a page bottom
+            return index === 0 ? (
+              <View key={rec.id} wrap={false}>
+                <SectionHeader
+                  eyebrow={t('Ils m’ont fait confiance', 'They trusted me')}
+                  title={t('Recommandations professionnelles', 'Professional Recommendations')}
+                />
+                {card}
+              </View>
+            ) : (
+              card
+            );
+          })}
         </View>
       </Page>
     </Document>

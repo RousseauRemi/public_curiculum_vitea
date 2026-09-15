@@ -1,6 +1,10 @@
 import type { ProjetInterne, ProjectCategory } from '../../store/types';
 import { Monitor, Sprout, Hammer, Zap } from 'lucide-react';
 
+/** A project can be a company project, a personal one, or both (`personal` + `company`). */
+export const isPersonalProject = (project: ProjetInterne): boolean => !!project.personal;
+export const isCompanyProject = (project: ProjetInterne): boolean => !project.personal || !!project.company;
+
 /**
  * Project status color mapping
  */

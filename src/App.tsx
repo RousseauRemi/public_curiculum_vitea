@@ -9,7 +9,7 @@ import EducationSection from './features/education/EducationSection';
 import ProjectsSection from './features/projects/ProjectsSection';
 import RecommendationsSection from './features/recommendations/RecommendationsSection';
 import ContactCTA from './features/contact/ContactCTA';
-import useAppStore from './store/useAppStore';
+import useAppStore, { pathForLanguage } from './store/useAppStore';
 import './App.css';
 import './styles/theme.css';
 import './styles/utilities.css';
@@ -17,10 +17,25 @@ import './styles/pdf.css';
 
 function App() {
   const theme = useAppStore((state) => state.theme);
+  const language = useAppStore((state) => state.language);
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark');
   }, [theme]);
+
+  // Keep the address, <html lang> and title in step with the language switch, so the page can be
+  // reloaded or shared in the language being read (English at /, French at /fr/).
+  useEffect(() => {
+    document.documentElement.lang = language;
+    document.title = language === 'fr'
+      ? 'Rémi Rousseau - Développeur .NET Fullstack (C#, Angular, React, Flutter)'
+      : 'Rémi Rousseau - Full-Stack .NET Developer (C#, Angular, React, Flutter)';
+    const path = pathForLanguage(language);
+    if (window.location.pathname !== path) {
+      // Keep the query string (utm_*, ref…) and the section anchor
+      window.history.replaceState(null, '', path + window.location.search + window.location.hash);
+    }
+  }, [language]);
 
   return (
     <ErrorBoundary showDetails={process.env.NODE_ENV === 'development'}>

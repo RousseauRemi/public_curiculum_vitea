@@ -60,7 +60,7 @@ export const DesktopNavigation: React.FC<DesktopNavigationProps> = ({
           </motion.div>
           <div>
             <h3 className="font-semibold text-primary">Rémi Rousseau</h3>
-            <p className="text-xs text-secondary">Fullstack Developer</p>
+            <p className="text-xs text-secondary">{language === Language.FR ? 'Développeur .NET Fullstack' : 'Full-Stack .NET Developer'}</p>
           </div>
         </motion.div>
         

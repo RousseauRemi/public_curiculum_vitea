@@ -7,7 +7,7 @@ import { ProjectModal } from '../../shared/components/ProjectModal';
 import { SkeletonProjectCard } from '../../shared/components/SkeletonLoader';
 import useAppStore from '../../store/useAppStore';
 import { useTranslation } from '../../shared/hooks/useTranslation';
-import { getProjectStatus, projectHasCategory } from '../../shared/utils/projectUtils';
+import { getProjectStatus, isCompanyProject, isPersonalProject, projectHasCategory } from '../../shared/utils/projectUtils';
 import type { ProjetInterne } from '../../store/types';
 import { ProjectCategory } from '../../store/types';
 
@@ -39,7 +39,9 @@ const ProjectsSection: React.FC = () => {
       .filter(project => {
         const statusMatch = filter === 'all' || getProjectStatus(project) === filter;
         const categoryMatch = categoryFilter === 'all' || projectHasCategory(project, categoryFilter as ProjectCategory);
-        const ownerMatch = ownerFilter === 'all' || (ownerFilter === 'personal') === !!project.personal;
+        const ownerMatch =
+          ownerFilter === 'all' ||
+          (ownerFilter === 'personal' ? isPersonalProject(project) : isCompanyProject(project));
         return statusMatch && categoryMatch && ownerMatch;
       })
       .sort((a, b) => {

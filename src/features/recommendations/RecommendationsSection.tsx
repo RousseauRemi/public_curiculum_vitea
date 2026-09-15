@@ -10,6 +10,9 @@ const RecommendationsSection: React.FC = () => {
   const { language, getCVData } = useAppStore();
   const { t } = useTranslation(language);
   const { recommendations } = getCVData();
+  // `recommendation` is the text shown by default, `translated` the version in the other language that
+  // the toggle offers. Which one counts as the original is set per recommendation in the data
+  // (`recommendationLanguage` gives the language of `recommendation`, which the PDF relies on).
   const [translationToggled, setTranslationToggled] = useState<{ [key: number]: boolean }>({});
   const [expanded, setExpanded] = useState<{ [key: number]: boolean }>({});
 
@@ -35,6 +38,9 @@ const RecommendationsSection: React.FC = () => {
     const showTranslation = translationToggled[recommendation.id];
     const isExpanded = expanded[recommendation.id];
     const displayText = showTranslation && recommendation.translated ? recommendation.translated : recommendation.recommendation;
+    const toggleLabel = showTranslation
+      ? (isFr ? 'Voir la version originale' : 'Show original')
+      : (isFr ? 'Voir la traduction' : 'Show translation');
 
     return (
       <motion.div
@@ -96,7 +102,8 @@ const RecommendationsSection: React.FC = () => {
                 <button
                   onClick={() => toggleTranslation(recommendation.id)}
                   className="print-hidden p-2 rounded-lg text-primary-600 bg-primary-50 hover:text-white hover:bg-primary-600 transition-colors duration-200 border border-primary-200"
-                  title={showTranslation ? 'Voir version originale' : 'Voir traduction'}
+                  title={toggleLabel}
+                  aria-label={toggleLabel}
                 >
                   <Languages size={16} />
                 </button>

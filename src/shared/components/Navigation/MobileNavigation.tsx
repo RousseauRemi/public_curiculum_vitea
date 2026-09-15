@@ -190,7 +190,7 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
                           whileHover={{ scale: 1.02, x: 4 }}
                           whileTap={{ scale: 0.98 }}
                         >
-                          <EnhancedPDFButton className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center gap-2">
+                          <EnhancedPDFButton wrapperClassName="w-full" className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center gap-2">
                             <FileDown size={16} />
                             {item.label}
                           </EnhancedPDFButton>
