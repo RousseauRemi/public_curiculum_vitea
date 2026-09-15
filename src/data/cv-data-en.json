@@ -23,7 +23,7 @@
       "nomDeMission": "Fullstack Developer",
       "localisation": "Remote Work",
       "dateDebut": "August 2024",
-      "dateFin": "October 2026",
+      "dateFin": null,
       "missionEnCours": true,
       "technologies": [
         "React",
@@ -59,7 +59,7 @@
       ],
       "conditionDeFinDeMission": "Ongoing mission",
       "equipe": "International team with developers worldwide",
-      "logo1": "/images/experiences/DELOITTE.png",
+      "logo1": "/images/experiences/acolad.svg",
       "atouts": [
         {
           "icon": "english",
@@ -601,28 +601,87 @@
       "startDate": "May 2026",
       "endDate": null,
       "status": "enCours",
-      "sortDate": "2026-06",
-      "description": "Web app for estimating and comparing properties based on French DVF data (notarized sales). Deployed in production with GitHub Actions CI/CD and centralized logging (Loki/Grafana).",
+      "sortDate": "2026-08",
+      "description": "Web application for estimating and comparing real-estate properties: valuation engine backed by notarised sales data (DVF), room-by-room energy diagnostics and a machine-learning model retrained per department. Deployed to production with GitHub Actions CI/CD and centralised logs (Loki/Grafana).",
       "categories": [
         "informatics"
       ],
       "expandable": true,
+      "subProjects": [
+        {
+          "id": 1,
+          "name": "Valuation engine & web application",
+          "startDate": "May 2026",
+          "endDate": null,
+          "description": ".NET 9 back end (CQRS, Minimal APIs, EF Core 9 on PostGIS) exposing the valuation engine: DVF comparables, depreciation schedule, per-room and per-floor energy rating, LightGBM prediction with confidence intervals. React 19 front end with a progressive input flow and a map of comparables.",
+          "technologies": [
+            ".NET 9",
+            "EF Core 9",
+            "PostGIS",
+            "ML.NET / LightGBM",
+            "Hangfire",
+            "React 19",
+            "TanStack Query",
+            "MapLibre GL"
+          ],
+          "tools": [],
+          "updates": [],
+          "images": [
+            {
+              "url": "/images/projects/Estime_ma_propriete.png",
+              "type": "web"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Property listing collection",
+          "startDate": "July 2026",
+          "endDate": null,
+          "description": ".NET 9 listing collection service (immobilier.notaires.fr, Bien'ici, Leboncoin) exposed as an MCP server: description enrichment, replay of recorded human gestures to get past anti-bot protections, upsert by external identifier and dockerised deployment.",
+          "technologies": [
+            ".NET 9",
+            "Playwright",
+            "MCP",
+            "Airtable",
+            "Docker"
+          ],
+          "tools": [],
+          "updates": [],
+          "images": []
+        }
+      ],
       "technologies": [
-        ".NET 8",
-        "React",
+        ".NET 9",
+        "React 19",
         "TypeScript",
-        "PostgreSQL",
+        "PostgreSQL / PostGIS",
+        "ML.NET / LightGBM",
+        "Keycloak",
         "Docker",
         "GitHub Actions"
       ],
       "outils": [],
       "updates": [
         {
+          "date": "August 2026",
+          "description": "Per-department DVF loading with automatic model retraining, reference price breakdown explained line by line and a broader equipment schedule"
+        },
+        {
+          "date": "July 2026",
+          "description": "Engine robustness in rural areas: robust statistics, replacement-cost anchor, credibility indicator and DVF coverage announced as soon as the address is entered"
+        },
+        {
           "date": "June 2026",
-          "description": "Production rollout behind a reverse proxy with continuous deployment"
+          "description": "Production release behind a reverse proxy with continuous deployment, room- and floor-based estimation flow, legal pages and GDPR back office with automatic anonymisation"
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/images/projects/Estime_ma_propriete.png",
+          "type": "web"
+        }
+      ]
     },
     {
       "id": 16,
@@ -644,8 +703,22 @@
         "PostgreSQL"
       ],
       "outils": [],
-      "updates": [],
-      "images": []
+      "updates": [
+        {
+          "date": "June 2026",
+          "description": "Compliance audit of the tax rules against official sources (246 rules validated) and move from flat-rate contributions to the real URSSAF brackets"
+        },
+        {
+          "date": "May 2026",
+          "description": "Retirement-savings-plan dispatch per compartment (collective / mandatory), Art. 83 and L.3332-11 ceilings, and automated Excel export audit in continuous integration"
+        }
+      ],
+      "images": [
+        {
+          "url": "/images/projects/Optim_fiscal.png",
+          "type": "web"
+        }
+      ]
     },
     {
       "id": 17,
@@ -653,7 +726,7 @@
       "startDate": "January 2026",
       "endDate": null,
       "status": "enCours",
-      "sortDate": "2026-05",
+      "sortDate": "2026-09",
       "description": "Homemade tools for developing with AI agents: a parallel Claude Code agent orchestrator and an MCP server for semantic code search.",
       "categories": [
         "informatics"
@@ -665,16 +738,42 @@
           "name": "Agent Orchestrator",
           "startDate": "January 2026",
           "endDate": null,
-          "description": "Python CLI driving several Claude Code agents in parallel within isolated git worktrees: multi-step execution, supervision, timeouts and a web monitoring dashboard.",
+          "description": "Python CLI and web console driving several Claude Code agents in parallel inside isolated git worktrees: splitting a ticket into steps, supervised execution in tmux sessions, validation gates, recovery after interruption and real-time monitoring from the browser.",
           "technologies": [
             "Python",
             "FastAPI",
             "React",
-            "PostgreSQL"
+            "PostgreSQL",
+            "tmux",
+            "Docker",
+            "GitHub Actions",
+            "MCP"
           ],
           "tools": [],
-          "updates": [],
-          "images": []
+          "updates": [
+            {
+              "date": "September 2026",
+              "description": "Hardened REPL driving: positive end-of-turn detection, per-turn time budget and session recovery after a disconnect"
+            },
+            {
+              "date": "August 2026",
+              "description": "Real-time web console attached to the agent terminal, project-scoped workflows and a ticket MCP server shipped as a service of the stack"
+            },
+            {
+              "date": "July 2026",
+              "description": "Continuous deployment of the stack on a self-hosted runner, with a controlled deployment target"
+            }
+          ],
+          "images": [
+            {
+              "url": "/images/projects/claude_automation.png",
+              "type": "web"
+            },
+            {
+              "url": "/images/projects/Claude_automation_workflow.png",
+              "type": "web"
+            }
+          ]
         },
         {
           "id": 2,
@@ -690,11 +789,29 @@
             "Ollama"
           ],
           "tools": [],
-          "updates": [],
+          "updates": [
+            {
+              "date": "July 2026",
+              "description": "Multi-language indexing (C#, Dart, Java, Go, Rust, Kotlin, Swift, C/C++, Ruby, PHP) and auto-tagging of business features"
+            },
+            {
+              "date": "June 2026",
+              "description": "Asynchronous indexing queue (no more Ollama saturation) and security hardening: SQL/Cypher injections, dashboard XSS, parameterised queries"
+            }
+          ],
           "images": []
         }
       ],
-      "images": []
+      "images": [
+        {
+          "url": "/images/projects/claude_automation.png",
+          "type": "web"
+        },
+        {
+          "url": "/images/projects/Claude_automation_workflow.png",
+          "type": "web"
+        }
+      ]
     },
     {
       "id": 18,
@@ -702,7 +819,7 @@
       "startDate": "April 2026",
       "endDate": null,
       "status": "enCours",
-      "sortDate": "2026-05",
+      "sortDate": "2026-07",
       "description": "Tracking and rebalancing of investments: an ETF portfolio in a French PEA and unit-linked (life insurance) holdings, replacing an Excel workbook. Docker deployment through a self-hosted CI.",
       "categories": [
         "informatics"
@@ -717,7 +834,16 @@
         "Docker"
       ],
       "outils": [],
-      "updates": [],
+      "updates": [
+        {
+          "date": "July 2026",
+          "description": "Aligned contracts between front end and API and migration off the quote endpoints retired by the provider, with explicit error messages"
+        },
+        {
+          "date": "May 2026",
+          "description": "Multi-account support (PEA + brokerage account), broker CSV statement import and resolution of unknown tickers via Yahoo Finance and OpenFIGI"
+        }
+      ],
       "images": []
     },
     {
@@ -749,7 +875,7 @@
       "startDate": "October 2024",
       "endDate": null,
       "status": "enCours",
-      "sortDate": "2026-03",
+      "sortDate": "2026-06",
       "description": "Event-based gift coordination (birthdays, holidays): ideas, purchase tracking and surprise gifts with per-group visibility rules.",
       "categories": [
         "informatics"
@@ -762,8 +888,18 @@
         "Keycloak"
       ],
       "outils": [],
-      "updates": [],
-      "images": []
+      "updates": [
+        {
+          "date": "June 2026",
+          "description": "Security and robustness pass: fixed direct object reference flaws (IDOR), added concurrency control, fixed authentication and date handling in the Flutter app, made continuous integration blocking"
+        }
+      ],
+      "images": [
+        {
+          "url": "/images/projects/Event_gift_manager.png",
+          "type": "web"
+        }
+      ]
     },
     {
       "id": 21,
@@ -1136,7 +1272,7 @@
       "startDate": "2023",
       "endDate": null,
       "status": "enCours",
-      "sortDate": "2025-07",
+      "sortDate": "2026-06",
       "description": "This resume: a bilingual (FR/EN) React app with PDF export, responsive design and JSON-driven data.",
       "categories": [
         "informatics"
@@ -1151,6 +1287,10 @@
       ],
       "outils": [],
       "updates": [
+        {
+          "date": "June 2026",
+          "description": "Reworked the projects section, modernised PDF export and self-hosted fonts to satisfy a strict Content Security Policy"
+        },
         {
           "date": "2025",
           "description": "Complete rewrite in React + Tailwind CSS with simplified PDF generation"

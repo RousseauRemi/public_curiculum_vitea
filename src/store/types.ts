@@ -12,7 +12,8 @@ export interface Experience {
   nomDeMission: string;
   localisation: string;
   dateDebut: string;
-  dateFin: string;
+  /** null when the mission is still running (rendered as "Présent" / "Present") */
+  dateFin: string | null;
   missionEnCours: boolean;
   technologies: string[];
   outils: string[];

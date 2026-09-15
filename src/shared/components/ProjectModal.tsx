@@ -173,9 +173,34 @@ export const ProjectModal = memo<ProjectModalProps>(({
                           ))}
                         </div>
                       )}
+                      {subProject.updates && subProject.updates.length > 0 && (
+                        <ul className="mt-3 space-y-2 border-l-2 border-secondary-200 pl-3">
+                          {subProject.updates.map((update, updateIndex) => (
+                            <li key={generateSafeKey('subupdate', subProject.id, update.date, updateIndex)} className="text-sm">
+                              <span className="font-medium text-neutral-800">{update.date}</span>
+                              <span className="text-neutral-600"> — {update.description}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                     </div>
                   ))}
                 </div>
+              </div>
+            )}
+
+            {/* Updates */}
+            {project.updates && project.updates.length > 0 && (
+              <div className="mb-6">
+                <h3 className="text-lg font-semibold text-neutral-800 mb-3">{t('projects.updates')}</h3>
+                <ul className="space-y-3 border-l-2 border-secondary-200 pl-4">
+                  {project.updates.map((update, index) => (
+                    <li key={generateSafeKey('update', project.id, update.date, index)}>
+                      <p className="font-medium text-neutral-800 text-sm">{update.date}</p>
+                      <p className="text-neutral-700 text-sm leading-relaxed">{update.description}</p>
+                    </li>
+                  ))}
+                </ul>
               </div>
             )}
 
