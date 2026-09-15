@@ -147,7 +147,15 @@
     font-family: 'Sora', 'Inter', system-ui, sans-serif;
     letter-spacing: -0.02em;
   }
-  
+
+  /* Tailwind v4's preflight resets buttons to the browser's default cursor
+     (v3 used pointer), which left every toggle, filter and nav button without
+     a hand cursor. Restore it for anything clickable that isn't disabled. */
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+
   #root {
     margin: 0;
     padding: 0;
