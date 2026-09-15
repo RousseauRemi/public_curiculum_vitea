@@ -77,8 +77,8 @@ const HomeSection: React.FC = () => {
   };
 
   const heroPitch = isFr
-    ? "C# / .NET 8-9 structuré en DDD, CQRS et Clean Architecture, fronts Angular et React, mobile Flutter. Des applications métier robustes, pensées pour durer et menées jusqu'en production."
-    : 'C# / .NET 8-9 built on DDD, CQRS and Clean Architecture, Angular and React front ends, Flutter mobile. Robust business applications, designed to last and taken all the way to production.';
+    ? "Plus de 12 ans à concevoir des applications métier : C# / .NET (dernières versions) en DDD, CQRS et Clean Architecture, fronts Angular et React, mobile Flutter. Robustes, pensées pour durer et menées jusqu'en production."
+    : '12+ years building business applications: C# / .NET (latest versions) with DDD, CQRS and Clean Architecture, Angular and React front ends, Flutter mobile. Robust, designed to last and taken all the way to production.';
 
   const contactItems = [
     {

@@ -6,7 +6,7 @@
     "email": "hiring@remirousseau.pro",
     "linkedin": "https://www.linkedin.com/in/remirousseauprofil/",
     "profileImage": "/images/profile.jpg",
-    "description": "Full-stack .NET developer with 12+ years of experience, I design and evolve business applications end to end: C# / .NET 8-9 back ends built on DDD, CQRS and Clean Architecture, Angular and React front ends, Flutter mobile apps. I have worked on industrial WPF software as well as international web platforms, within English-speaking teams. Today I bring AI into products and into the way I build them (MCP servers, LLMs, agents), and I take my own applications all the way to production.",
+    "description": "Full-stack .NET developer with 12+ years of experience, I design and evolve business applications end to end: C# / .NET back ends (latest versions) built on DDD, CQRS and Clean Architecture, Angular and React front ends, Flutter mobile apps. I have worked on industrial WPF software as well as international web platforms, within English-speaking teams. Today I bring AI into products and into the way I build them (MCP servers, LLMs, agents), and I take my own applications all the way to production.",
     "passions": [
       "Internal projects",
       "Meditation",
@@ -27,7 +27,7 @@
       "technologies": [
         "React",
         "TypeScript",
-        ".Net 8",
+        ".NET 10",
         "Entity Framework Core",
         "SqlServer",
         "Postgres",
@@ -50,7 +50,7 @@
       ],
       "context": "Acolad via Elephant technologies",
       "detailsMission": [
-        "Full-stack development with React and .NET 8",
+        "Full-stack development with React and .NET 10",
         "Maintenance and evolution of interactions between project managers and translation tools (CAT tools)",
         "Implementation of CQRS and Clean Architecture patterns",
         "Collaboration with globally distributed teams",
@@ -87,7 +87,7 @@
       "technologies": [
         "Angular",
         "TypeScript",
-        ".Net 6",
+        ".NET 6",
         "Entity Framework Core",
         "SqlServer"
       ],
@@ -130,7 +130,7 @@
     },
     {
       "id": 6,
-      "nomDeMission": "Fullstack Angular / .Net Developer",
+      "nomDeMission": "Fullstack Angular / .NET Developer",
       "localisation": "Nantes",
       "dateDebut": "March 2022",
       "dateFin": "December 2022",
@@ -138,7 +138,7 @@
       "technologies": [
         "Angular 14",
         "TypeScript",
-        ".Net 6",
+        ".NET 6",
         "Entity Framework Core",
         "SqlServer"
       ],
@@ -185,7 +185,7 @@
         "Angular",
         "RxJs",
         "TypeScript",
-        ".Net Core 3.1",
+        ".NET Core 3.1",
         "Entity Framework Core",
         "RabbitMQ",
         "SqlServer",
@@ -387,7 +387,7 @@
       "title2": "Skills",
       "competences": [
         {
-          "label": "C# & .Net",
+          "label": "C# & .NET",
           "backgroundColor": "#512BD4",
           "data": 3,
           "level": "advanced",

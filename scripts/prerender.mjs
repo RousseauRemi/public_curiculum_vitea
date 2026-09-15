@@ -32,9 +32,9 @@ const LANGS = {
     jobTitle: 'Full-Stack .NET Developer',
     title: 'Rémi Rousseau - Full-Stack .NET Developer (C#, Angular, React, Flutter)',
     description:
-      'Full-stack .NET developer with 12+ years of experience: C# / .NET 8-9, DDD, CQRS and Clean Architecture, Angular and React front ends, Flutter mobile.',
+      'Full-stack .NET developer with 12+ years of experience: C# / .NET (latest versions), DDD, CQRS and Clean Architecture, Angular and React front ends, Flutter mobile.',
     keywords:
-      'Rémi Rousseau, .NET developer, C#, .NET 8, .NET 9, full-stack, DDD, Domain-Driven Design, CQRS, Clean Architecture, Entity Framework Core, Angular, React, Flutter, Python, Nantes, France',
+      'Rémi Rousseau, .NET developer, C#, .NET, full-stack, DDD, Domain-Driven Design, CQRS, Clean Architecture, Entity Framework Core, Angular, React, Flutter, Python, Nantes, France',
     labels: {
       role: 'Full-Stack .NET Developer — C#/.NET, Angular, React, Python, Flutter',
       experience: 'Professional experience',
@@ -56,9 +56,9 @@ const LANGS = {
     jobTitle: 'Développeur .NET Fullstack',
     title: 'Rémi Rousseau - Développeur .NET Fullstack (C#, Angular, React, Flutter)',
     description:
-      "Développeur .NET Fullstack, plus de 12 ans d'expérience : C# / .NET 8-9, DDD, CQRS et Clean Architecture, fronts Angular et React, mobile Flutter.",
+      "Développeur .NET Fullstack, plus de 12 ans d'expérience : C# / .NET (dernières versions), DDD, CQRS et Clean Architecture, fronts Angular et React, mobile Flutter.",
     keywords:
-      'Rémi Rousseau, développeur .NET, C#, .NET 8, .NET 9, fullstack, DDD, Domain-Driven Design, CQRS, Clean Architecture, Entity Framework Core, Angular, React, Flutter, Python, Nantes',
+      'Rémi Rousseau, développeur .NET, C#, .NET, fullstack, DDD, Domain-Driven Design, CQRS, Clean Architecture, Entity Framework Core, Angular, React, Flutter, Python, Nantes',
     labels: {
       role: 'Développeur .NET Fullstack — C#/.NET, Angular, React, Python, Flutter',
       experience: 'Expérience professionnelle',
