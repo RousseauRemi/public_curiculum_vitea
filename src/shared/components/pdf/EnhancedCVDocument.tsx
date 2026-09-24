@@ -577,11 +577,12 @@ export const EnhancedCVDocument = ({
             <Text style={s.name}>
               {data.personalInfo.prenom} {data.personalInfo.nom}
             </Text>
-            <Text style={s.role}>{t('Développeur .NET Fullstack', 'Full-Stack .NET Developer')}</Text>
+            <Text style={s.role}>{t("Ingénieur .NET senior — DDD/CQRS, modernisation d'applications métier", 'Senior .NET Engineer — DDD/CQRS, business application modernisation')}</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
               <View style={{ width: 5, height: 5, borderRadius: 2.5, backgroundColor: '#4ade80', marginRight: 4 }} />
               <Text style={{ fontSize: 7.5, color: C.heroMuted }}>
-                {t('En mission · ouvert aux opportunités', 'On assignment · open to opportunities')}
+                {data.personalInfo.statut ? `${data.personalInfo.statut} · ` : ''}
+                {t('en mission, ouvert aux opportunités', 'on assignment, open to opportunities')}
               </Text>
             </View>
             <Text style={s.heroLine}>
@@ -603,11 +604,6 @@ export const EnhancedCVDocument = ({
         <View style={s.section}>
           <SectionHeader eyebrow={t('Qui je suis', 'Who I am')} title={t('Profil', 'Profile')} />
           <Text style={s.paragraph}>{data.personalInfo.description}</Text>
-          <View style={s.chipsRow}>
-            {data.personalInfo.passions.map((passion, idx) => (
-              <Chip key={idx} label={passion} colors={{ bg: '#ccfbf1', text: '#0f766e' }} />
-            ))}
-          </View>
         </View>
 
         {/* ============ EXPERIENCE (timeline) ============ */}
@@ -635,12 +631,10 @@ export const EnhancedCVDocument = ({
 
                 <Text style={[s.paragraph, { marginTop: 5 }]}>{exp.mission}</Text>
 
-                {((exp.objectives?.length || 0) + (exp.detailsMission?.length || 0)) > 0 && (
+                {/* Only detailsMission: objectives repeated the same points almost every time */}
+                {(exp.detailsMission?.length || 0) > 0 && (
                   <View style={{ marginTop: 5 }}>
-                    {(exp.objectives || []).slice(0, 3).map((o, idx) => (
-                      <Bullet key={`o-${idx}`}>{o}</Bullet>
-                    ))}
-                    {(exp.detailsMission || []).slice(0, 4).map((d, idx) => (
+                    {(exp.detailsMission || []).slice(0, 5).map((d, idx) => (
                       <Bullet key={`d-${idx}`}>{d}</Bullet>
                     ))}
                   </View>
@@ -753,8 +747,9 @@ export const EnhancedCVDocument = ({
         <View style={s.section} wrap={false}>
           <SectionHeader eyebrow={t('Études', 'Studies')} title={t('Formation', 'Education')} />
           <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
+            {/* One row of four: two rows of two pushed the block to the next page */}
             {data.formations.map((formation) => (
-              <View key={formation.id} style={[s.softCard, { width: '48.6%' }]} wrap={false}>
+              <View key={formation.id} style={[s.softCard, { width: '23.4%', padding: 10 }]} wrap={false}>
                 <Text style={s.cardTitle}>{formation.nomFormation}</Text>
                 <Text style={s.cardSubtitle}>
                   {formation.nomEcole} · {formation.localisation}
@@ -770,6 +765,12 @@ export const EnhancedCVDocument = ({
               </View>
             ))}
           </View>
+          {(data.personalInfo.langues?.length || 0) > 0 && (
+            <Text style={[s.paragraph, { fontSize: 8, marginTop: 8 }]}>
+              <Text style={{ fontWeight: 700, color: C.ink }}>{t('Langues : ', 'Languages: ')}</Text>
+              {(data.personalInfo.langues || []).map((l) => `${l.label} — ${l.level}`).join('  ·  ')}
+            </Text>
+          )}
         </View>
 
         {/* ============ PERSONAL PROJECTS ============ */}

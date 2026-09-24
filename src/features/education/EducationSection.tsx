@@ -7,7 +7,8 @@ import { useTranslation } from '../../shared/hooks/useTranslation';
 const EducationSection: React.FC = () => {
   const { language, getCVData } = useAppStore();
   const { t } = useTranslation(language);
-  const { formations } = getCVData();
+  const { formations, personalInfo } = getCVData();
+  const isFr = language === 'fr';
 
   return (
     <SectionWrapper
@@ -16,6 +17,21 @@ const EducationSection: React.FC = () => {
       eyebrow={language === 'fr' ? 'Formation' : 'Education'}
       className="section-tint"
     >
+
+      {(personalInfo.langues?.length || 0) > 0 && (
+        <div className="max-w-6xl mx-auto mb-10 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm">
+          <span className="font-semibold text-neutral-900">{isFr ? 'Langues' : 'Languages'}</span>
+          {(personalInfo.langues || []).map((langue) => (
+            <span
+              key={langue.label}
+              className="inline-flex items-center gap-1.5 rounded-full border border-secondary-200 bg-white px-3 py-1 text-neutral-700"
+            >
+              <span className="font-medium text-neutral-900">{langue.label}</span>
+              <span className="text-neutral-500">{langue.level}</span>
+            </span>
+          ))}
+        </div>
+      )}
 
       {/* Timeline layout for better visual flow */}
       <div className="relative max-w-6xl mx-auto">

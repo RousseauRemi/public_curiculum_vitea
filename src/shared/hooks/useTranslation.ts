@@ -152,13 +152,3 @@ export function useTranslation(language: Language) {
     error: translationState.error
   };
 }
-
-// Utility function to preload translations (useful for SSR or preloading)
-export function preloadTranslations(): Promise<void> {
-  return loadTranslations();
-}
-
-// Utility function to get current translation state (for debugging)
-export function getTranslationState(): TranslationState {
-  return { ...translationState };
-}

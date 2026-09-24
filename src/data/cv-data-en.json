@@ -3,6 +3,7 @@
     "nom": "Rousseau",
     "prenom": "Rémi",
     "localisation": "Montfaucon-Montigné, France",
+    "statut": "Freelance",
     "email": "hiring@remirousseau.pro",
     "linkedin": "https://www.linkedin.com/in/remirousseauprofil/",
     "profileImage": "/images/profile.jpg",
@@ -14,7 +15,17 @@
       "Music",
       "Technology Watch"
     ],
-    "availabilityStatus": "in-mission-open"
+    "availabilityStatus": "in-mission-open",
+    "langues": [
+      {
+        "label": "French",
+        "level": "native"
+      },
+      {
+        "label": "English",
+        "level": "professional — daily meetings and documentation on assignment"
+      }
+    ]
   },
   "experiences": [
     {
@@ -228,8 +239,8 @@
       "id": 4,
       "nomDeMission": "C# / WPF Developer",
       "localisation": "Nantes",
-      "dateDebut": "June 2019",
-      "dateFin": "August 2020",
+      "dateDebut": "May 2019",
+      "dateFin": "July 2020",
       "missionEnCours": false,
       "technologies": [
         "WPF",
@@ -617,7 +628,7 @@
       "dateFin": "2016",
       "image": "/images/formations/epsi.png",
       "diplomes": [
-        "Programme completed, all technical competencies validated"
+        "Coursework completed, degree not awarded"
       ]
     },
     {

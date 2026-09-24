@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, MapPin, Users, ChevronDown, ChevronUp, Building2, Clock, Languages, Sparkles, Rocket, Layers, Factory, ShieldAlert } from 'lucide-react';
 import useAppStore from '../../store/useAppStore';
@@ -34,6 +34,12 @@ const AtoutBadge: React.FC<{ atout: ExperienceAtout }> = ({ atout }) => {
   );
 };
 
+// Hides a logo whose file fails to load
+const hideBrokenImage = (e: React.SyntheticEvent<HTMLImageElement>) => {
+  const target = e.target as HTMLImageElement;
+  target.style.display = 'none';
+};
+
 // Number of most recent experiences shown fully expanded; older ones are condensed
 const DETAILED_COUNT = 3;
 
@@ -41,7 +47,7 @@ const ExperienceSection: React.FC = () => {
   const { language, getCVData } = useAppStore();
   const { t } = useTranslation(language);
   const data = getCVData();
-  const experiences = useMemo(() => data.experiences, [data.experiences]);
+  const experiences = data.experiences;
   const [expandedItems, setExpandedItems] = useState<Set<number>>(new Set());
   const [expandedOldItems, setExpandedOldItems] = useState<Set<number>>(new Set());
 
@@ -87,10 +93,7 @@ const ExperienceSection: React.FC = () => {
                     src={experience.logo1}
                     alt={experience.context || ''}
                     className="w-10 h-10 object-contain"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = 'none';
-                    }}
+                    onError={hideBrokenImage}
                   />
                 </div>
               )}
@@ -100,10 +103,7 @@ const ExperienceSection: React.FC = () => {
                     src={experience.logo2}
                     alt=""
                     className="w-10 h-10 object-contain"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = 'none';
-                    }}
+                    onError={hideBrokenImage}
                   />
                 </div>
               )}
@@ -312,10 +312,7 @@ const ExperienceSection: React.FC = () => {
             src={experience.logo1}
             alt=""
             className="w-8 h-8 object-contain"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.style.display = 'none';
-            }}
+            onError={hideBrokenImage}
           />
         </div>
       ) : (

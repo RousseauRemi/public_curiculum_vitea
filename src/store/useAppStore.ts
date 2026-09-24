@@ -22,7 +22,6 @@ interface AppStore extends AppState {
   setLanguage: (language: Language) => void;
   setActiveSection: (section: string) => void;
   setMobileMenuOpen: (isOpen: boolean) => void;
-  setLoading: (isLoading: boolean) => void;
 
   // Theme
   theme: Theme;
@@ -41,7 +40,6 @@ const useAppStore = create<AppStore>()(
     (set, get) => ({
       // Initial state
       language: typeof window !== 'undefined' ? languageFromPath(window.location.pathname) : Language.EN,
-      isLoading: false,
       activeSection: 'home',
       isMobileMenuOpen: false,
       isHydrated: false,
@@ -63,10 +61,6 @@ const useAppStore = create<AppStore>()(
 
       setMobileMenuOpen: (isOpen: boolean) => {
         set({ isMobileMenuOpen: isOpen });
-      },
-
-      setLoading: (isLoading: boolean) => {
-        set({ isLoading });
       },
 
       setHydrated: (isHydrated: boolean) => {

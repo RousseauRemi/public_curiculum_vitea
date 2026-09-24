@@ -125,9 +125,17 @@ export interface Recommendation {
   logo1: string;
 }
 
+export interface Language_ {
+  label: string;
+  level: string;
+}
+
 export interface PersonalInfo {
   nom: string;
   prenom: string;
+  /** Working status shown next to the title, e.g. "Freelance" */
+  statut?: string;
+  langues?: Language_[];
   localisation: string;
   telephone?: string;
   email: string;
@@ -182,7 +190,6 @@ export type AvailabilityStatus = typeof AvailabilityStatus[keyof typeof Availabi
 // Application state interfaces
 export interface AppState {
   language: Language;
-  isLoading: boolean;
   activeSection: string;
   isMobileMenuOpen: boolean;
   isHydrated: boolean;

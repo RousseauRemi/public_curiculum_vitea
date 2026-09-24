@@ -131,7 +131,7 @@ const SkillsSection: React.FC = () => {
     <SectionWrapper
       id="skills"
       title={t('sections.technicalSkills')}
-      eyebrow={language === 'fr' ? 'Expertise' : 'Expertise'}
+      eyebrow="Expertise"
       className="section-tint relative"
     >
 

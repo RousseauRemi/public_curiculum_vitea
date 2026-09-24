@@ -110,63 +110,6 @@ export const getNavigationAriaLabel = (action: string, target: string, language:
 };
 
 /**
- * Check if element is focusable
- */
-export const isFocusable = (element: HTMLElement): boolean => {
-  const focusableSelectors = [
-    'a[href]',
-    'button:not([disabled])',
-    'input:not([disabled])',
-    'select:not([disabled])',
-    'textarea:not([disabled])',
-    '[tabindex]:not([tabindex="-1"])'
-  ];
-
-  return focusableSelectors.some(selector => element.matches(selector));
-};
-
-/**
- * Get next focusable element
- */
-export const getNextFocusableElement = (
-  currentElement: HTMLElement,
-  container?: HTMLElement
-): HTMLElement | null => {
-  const root = container || document.body;
-  const focusableElements = root.querySelectorAll(
-    'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
-  );
-  
-  const focusableArray = Array.from(focusableElements) as HTMLElement[];
-  const currentIndex = focusableArray.indexOf(currentElement);
-  
-  if (currentIndex === -1) return null;
-  
-  return focusableArray[currentIndex + 1] || focusableArray[0];
-};
-
-/**
- * Get previous focusable element
- */
-export const getPrevFocusableElement = (
-  currentElement: HTMLElement,
-  container?: HTMLElement
-): HTMLElement | null => {
-  const root = container || document.body;
-  const focusableElements = root.querySelectorAll(
-    'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
-  );
-  
-  const focusableArray = Array.from(focusableElements) as HTMLElement[];
-  const currentIndex = focusableArray.indexOf(currentElement);
-  
-  if (currentIndex === -1) return null;
-  
-  return focusableArray[currentIndex - 1] || focusableArray[focusableArray.length - 1];
-};
-
-
-/**
  * Keyboard navigation constants
  */
 export const KEYBOARD_KEYS = {

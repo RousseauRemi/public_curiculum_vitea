@@ -144,7 +144,10 @@ const HomeSection: React.FC = () => {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full w-2.5 h-2.5 bg-emerald-500"></span>
                 </span>
-                <span>{t(`availability.${personalInfo.availabilityStatus}`)}</span>
+                <span>
+                  {personalInfo.statut ? `${personalInfo.statut} · ` : ''}
+                  {t(`availability.${personalInfo.availabilityStatus}`)}
+                </span>
               </motion.div>
 
               <motion.h1
@@ -165,7 +168,7 @@ const HomeSection: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                {isFr ? 'Développeur .NET Fullstack' : 'Full-Stack .NET Developer'}
+                {isFr ? "Ingénieur .NET senior — DDD/CQRS, modernisation d'applications métier" : 'Senior .NET Engineer — DDD/CQRS, business application modernisation'}
               </motion.h2>
 
               <motion.p

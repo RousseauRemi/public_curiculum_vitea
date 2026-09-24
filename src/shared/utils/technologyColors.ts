@@ -199,31 +199,6 @@ const dotColors: Record<string, string> = {
   ai: 'bg-fuchsia-400'
 };
 
-// Hex equivalents of dotColors for non-Tailwind consumers (PDF document)
-const dotColorsHex: Record<string, string> = {
-  dotnet: '#a78bfa',
-  angular: '#fb7185',
-  react: '#38bdf8',
-  typescript: '#60a5fa',
-  python: '#fbbf24',
-  java: '#fb923c',
-  javascript: '#facc15',
-  css: '#7dd3fc',
-  html: '#fdba74',
-  vue: '#34d399',
-  svelte: '#fb923c',
-  tailwind: '#2dd4bf',
-  bootstrap: '#c4b5fd',
-  sass: '#f472b6',
-  database: '#818cf8',
-  cloud: '#22d3ee',
-  tools: '#94a3b8',
-  testing: '#fda4af',
-  mobile: '#4ade80',
-  devops: '#64748b',
-  ai: '#e879f9'
-};
-
 // Tinted chip colors (bg-100 / text-700 shades) for non-Tailwind consumers (PDF document)
 const chipColorsHex: Record<string, { bg: string; text: string }> = {
   dotnet: { bg: '#ede9fe', text: '#6d28d9' },
@@ -267,13 +242,6 @@ const resolveFamily = (techName: string): string => {
  */
 export const getTechnologyDotColor = (techName: string): string => {
   return dotColors[resolveFamily(techName)] || dotColors.tools;
-};
-
-/**
- * Get the dot color as a hex value (for the PDF document, which can't use Tailwind classes)
- */
-export const getTechnologyDotHex = (techName: string): string => {
-  return dotColorsHex[resolveFamily(techName)] || dotColorsHex.tools;
 };
 
 /**
@@ -360,17 +328,4 @@ export const getTechnologyColorShades = (gradientColor: string): { bg: string; b
     bg: `bg-${baseColor}-100`,
     border: `border-${baseColor}-200`
   };
-};
-
-/**
- * Get all available technology colors (for documentation/reference)
- */
-export const getAllTechnologyColors = () => {
-  return Object.entries(colorFamilies).map(([family, gradient]) => ({
-    family,
-    gradient,
-    technologies: Object.entries(technologyMap)
-      .filter(([, f]) => f === family)
-      .map(([tech]) => tech)
-  }));
 };

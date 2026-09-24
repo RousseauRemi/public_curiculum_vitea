@@ -65,20 +65,6 @@ export const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({
 };
 
 // Predefined skeleton components for common use cases
-export const SkeletonCard: React.FC<{ className?: string }> = ({ className = '' }) => (
-  <div className={`bg-white rounded-xl shadow-card p-6 ${className}`}>
-    <div className="flex items-center space-x-4 mb-4">
-      <SkeletonLoader variant="circular" width={40} height={40} />
-      <div className="flex-1">
-        <SkeletonLoader variant="text" width="60%" height="1rem" className="mb-2" />
-        <SkeletonLoader variant="text" width="40%" height="0.75rem" />
-      </div>
-    </div>
-    <SkeletonLoader variant="text" lines={3} className="mb-4" />
-    <SkeletonLoader variant="rectangular" width="100%" height="8rem" />
-  </div>
-);
-
 export const SkeletonProjectCard: React.FC<{ className?: string }> = ({ className = '' }) => (
   <div className={`bg-white rounded-xl shadow-card p-6 ${className}`}>
     {/* Status bar */}
@@ -118,62 +104,6 @@ export const SkeletonProjectCard: React.FC<{ className?: string }> = ({ classNam
 
     {/* Image */}
     <SkeletonLoader variant="rectangular" width="100%" height="8rem" className="rounded-lg" />
-  </div>
-);
-
-export const SkeletonNavigation: React.FC<{ className?: string }> = ({ className = '' }) => (
-  <div className={`bg-white shadow-card border-b border-secondary-200 p-4 ${className}`}>
-    <div className="flex items-center justify-between">
-      {/* Logo area */}
-      <div className="flex items-center gap-3">
-        <SkeletonLoader variant="circular" width={40} height={40} />
-        <div>
-          <SkeletonLoader variant="text" width="120px" height="1rem" className="mb-1" />
-          <SkeletonLoader variant="text" width="100px" height="0.75rem" />
-        </div>
-      </div>
-      
-      {/* Navigation items */}
-      <div className="hidden md:flex items-center gap-2">
-        {Array.from({ length: 6 }).map((_, index) => (
-          <SkeletonLoader
-            key={index}
-            variant="text"
-            width={`${60 + Math.random() * 30}px`}
-            height="2rem"
-            className="rounded-lg"
-          />
-        ))}
-      </div>
-      
-      {/* Language toggle */}
-      <SkeletonLoader variant="text" width="50px" height="2rem" className="rounded-lg" />
-    </div>
-  </div>
-);
-
-export const SkeletonSection: React.FC<{ 
-  title?: boolean; 
-  cards?: number; 
-  className?: string;
-}> = ({ 
-  title = true, 
-  cards = 3, 
-  className = '' 
-}) => (
-  <div className={`py-16 px-4 ${className}`}>
-    {title && (
-      <div className="text-center mb-12">
-        <SkeletonLoader variant="text" width="300px" height="2.5rem" className="mx-auto mb-4" />
-        <SkeletonLoader variant="text" width="500px" height="1.25rem" className="mx-auto" />
-      </div>
-    )}
-    
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-      {Array.from({ length: cards }).map((_, index) => (
-        <SkeletonCard key={index} />
-      ))}
-    </div>
   </div>
 );
 

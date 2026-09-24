@@ -29,14 +29,15 @@ const LANGS = {
     htmlLang: 'en',
     ogLocale: 'en_US',
     ogLocaleAlternate: 'fr_FR',
-    jobTitle: 'Full-Stack .NET Developer',
+    jobTitle: 'Senior .NET Engineer',
     title: 'Rémi Rousseau - Full-Stack .NET Developer (C#, Angular, React, Flutter)',
     description:
       'Full-stack .NET developer with 12+ years of experience: C# / .NET (latest versions), DDD, CQRS and Clean Architecture, Angular and React front ends, Flutter mobile.',
     keywords:
       'Rémi Rousseau, .NET developer, C#, .NET, full-stack, DDD, Domain-Driven Design, CQRS, Clean Architecture, Entity Framework Core, Angular, React, Flutter, Python, Nantes, France',
     labels: {
-      role: 'Full-Stack .NET Developer — C#/.NET, Angular, React, Python, Flutter',
+      role: 'Senior .NET Engineer — DDD/CQRS, business application modernisation · C#/.NET, Angular, React, Flutter',
+      languages: 'Languages',
       experience: 'Professional experience',
       skills: 'Technical skills',
       education: 'Education',
@@ -53,14 +54,15 @@ const LANGS = {
     htmlLang: 'fr',
     ogLocale: 'fr_FR',
     ogLocaleAlternate: 'en_US',
-    jobTitle: 'Développeur .NET Fullstack',
+    jobTitle: 'Ingénieur .NET senior',
     title: 'Rémi Rousseau - Développeur .NET Fullstack (C#, Angular, React, Flutter)',
     description:
       "Développeur .NET Fullstack, plus de 12 ans d'expérience : C# / .NET (dernières versions), DDD, CQRS et Clean Architecture, fronts Angular et React, mobile Flutter.",
     keywords:
       'Rémi Rousseau, développeur .NET, C#, .NET, fullstack, DDD, Domain-Driven Design, CQRS, Clean Architecture, Entity Framework Core, Angular, React, Flutter, Python, Nantes',
     labels: {
-      role: 'Développeur .NET Fullstack — C#/.NET, Angular, React, Python, Flutter',
+      role: "Ingénieur .NET senior — DDD/CQRS, modernisation d'applications métier · C#/.NET, Angular, React, Flutter",
+      languages: 'Langues',
       experience: 'Expérience professionnelle',
       skills: 'Compétences techniques',
       education: 'Formation',
@@ -151,6 +153,13 @@ function renderContent(cv, L) {
           `<li><strong>${esc(f.nomFormation)}</strong> — ${esc(f.nomEcole)}, ${esc(f.localisation)} (${esc(f.dateDebut)} – ${esc(f.dateFin)})</li>`
       )
       .join('')}</ul>
+    ${
+      personalInfo.langues?.length
+        ? `<p><strong>${L.labels.languages} :</strong> ${personalInfo.langues
+            .map((l) => `${esc(l.label)} — ${esc(l.level)}`)
+            .join(' · ')}</p>`
+        : ''
+    }
   </section>`;
 
   const projectsSection = `

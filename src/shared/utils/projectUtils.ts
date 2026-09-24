@@ -109,18 +109,6 @@ export const getCategoryIcon = (category: ProjectCategory | undefined) => {
 };
 
 /**
- * Get project category from a project
- * @param project - The project object
- * @returns The project category
- */
-export const getProjectCategory = (project: ProjetInterne): ProjectCategory | undefined => {
-  if (project.categories && project.categories.length > 0) {
-    return project.categories[0];
-  }
-  return project.category;
-};
-
-/**
  * Get all project categories from a project
  * @param project - The project object
  * @returns Array of project categories
